@@ -1,0 +1,44 @@
+.checkbox {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--zelda-spacing-sm);
+    cursor: pointer;
+    user-select: none;
+}
+
+.checkbox-disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border: var(--zelda-border-width) solid var(--zelda-border-color);
+    border-radius: var(--zelda-border-radius-sm);
+    background: var(--zelda-bg-color-secondary);
+    transition: all var(--zelda-motion-duration-fast) var(--zelda-motion-ease);
+    flex-shrink: 0;
+
+    .checkbox:hover:not(.checkbox-disabled) & {
+        border-color: var(--zelda-sheikah-color);
+    }
+}
+
+.checkbox-checked .box {
+    background: var(--zelda-sheikah-color);
+    border-color: var(--zelda-sheikah-color);
+    box-shadow: var(--zelda-glow-sm);
+}
+
+.check {
+    color: #0A0E12;
+}
+
+.label {
+    color: var(--zelda-text-color);
+    font-size: var(--zelda-font-size-sm);
+}

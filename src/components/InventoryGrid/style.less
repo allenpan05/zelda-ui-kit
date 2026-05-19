@@ -1,0 +1,194 @@
+@import '../../styles/variables.less';
+@import '../../styles/mixins.less';
+
+// ============================================
+// InventoryGrid 樣式
+// ============================================
+
+.zelda-inventory {
+  display: grid;
+  gap: 4px;
+  padding: @space-sm;
+  background: @zelda-sand;
+  border: 2px solid @zelda-brown;
+  border-radius: @radius-lg;
+
+  &__cell {
+    position: relative;
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: @zelda-white;
+    border: 2px solid @zelda-border;
+    border-radius: @radius-sm;
+    cursor: pointer;
+    transition: @transition-fast;
+    padding: @space-xs;
+
+    &:hover:not(&--empty) {
+      border-color: @zelda-primary;
+      background: @zelda-primary-bg;
+    }
+
+    &--selected {
+      border-color: @zelda-primary;
+      background: @zelda-primary-bg;
+      box-shadow: @glow-primary;
+    }
+
+    &--empty {
+      cursor: default;
+      background: @zelda-bg;
+      border-style: dashed;
+    }
+
+    &--new {
+      &::after {
+        content: '★';
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        font-size: 10px;
+        color: @zelda-accent;
+        animation: sparkle 1.5s ease-in-out infinite;
+      }
+    }
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-size: 24px;
+
+    img {
+      max-width: 80%;
+      max-height: 80%;
+      object-fit: contain;
+    }
+  }
+
+  &__count {
+    position: absolute;
+    bottom: 2px;
+    right: 4px;
+    .font-hylia();
+    font-size: @font-size-xs;
+    font-weight: 700;
+    color: @zelda-text;
+    text-shadow: 0 0 2px @zelda-white;
+  }
+
+  &__durability {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: @zelda-border;
+    border-radius: 0 0 @radius-sm @radius-sm;
+    overflow: hidden;
+  }
+
+  &__durability-bar {
+    height: 100%;
+    transition: width 0.3s ease;
+  }
+
+  &__selection {
+    position: absolute;
+    inset: -6px;
+    pointer-events: none;
+  }
+
+  &__arrow {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+
+    &--top {
+      top: 0;
+      border-bottom: 6px solid @zelda-primary;
+      animation: arrowUp 0.8s ease-in-out infinite;
+    }
+
+    &--bottom {
+      bottom: 0;
+      border-top: 6px solid @zelda-primary;
+      animation: arrowDown 0.8s ease-in-out infinite;
+    }
+  }
+
+  &__empty-icon {
+    width: 24px;
+    height: 24px;
+    border: 2px dashed @zelda-border;
+    border-radius: @radius-sm;
+    opacity: 0.3;
+  }
+
+  // 尺寸
+  &--sm {
+    gap: 2px;
+    padding: @space-xs;
+
+    .zelda-inventory__icon {
+      font-size: 16px;
+    }
+  }
+
+  &--md {
+    gap: 4px;
+    padding: @space-sm;
+
+    .zelda-inventory__icon {
+      font-size: 24px;
+    }
+  }
+
+  &--lg {
+    gap: 6px;
+    padding: @space-md;
+
+    .zelda-inventory__icon {
+      font-size: 32px;
+    }
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes arrowUp {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-4px);
+  }
+}
+
+@keyframes arrowDown {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(4px);
+  }
+}

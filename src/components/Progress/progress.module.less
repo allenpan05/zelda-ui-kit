@@ -1,0 +1,65 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    gap: var(--zelda-spacing-md);
+}
+
+.track {
+    flex: 1;
+    background: var(--zelda-bg-color-tertiary);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.track-small { height: 6px; }
+.track-default { height: 10px; }
+
+.bar {
+    position: relative;
+    height: 100%;
+    border-radius: 999px;
+    transition: width var(--zelda-motion-duration-slow) var(--zelda-motion-ease);
+}
+
+.bar-sheikah {
+    background: linear-gradient(90deg, #00A8D9, #00C8FF);
+    box-shadow: 0 0 8px rgba(0, 200, 255, 0.3);
+}
+
+.bar-gold {
+    background: linear-gradient(90deg, #B8922E, #D4A843);
+    box-shadow: 0 0 8px rgba(212, 168, 67, 0.3);
+}
+
+.bar-success {
+    background: linear-gradient(90deg, #388E3C, #4CAF50);
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+}
+
+.bar-error {
+    background: linear-gradient(90deg, #C62828, #E53935);
+    box-shadow: 0 0 8px rgba(229, 57, 53, 0.3);
+}
+
+.glow {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 20px;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3));
+    animation: zelda-progress-shimmer 1.5s ease-in-out infinite;
+}
+
+.text {
+    min-width: 40px;
+    text-align: right;
+    font-size: var(--zelda-font-size-sm);
+    color: var(--zelda-text-color-secondary);
+    font-weight: 600;
+}
+
+@keyframes zelda-progress-shimmer {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}

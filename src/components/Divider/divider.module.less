@@ -1,0 +1,38 @@
+.divider {
+    display: flex;
+    align-items: center;
+    margin: var(--zelda-spacing-lg) 0;
+    border-top: 1px solid var(--zelda-border-color);
+}
+
+.divider-dashed {
+    border-top-style: dashed;
+}
+
+.divider-with-text {
+    border-top: none;
+
+    &::before,
+    &::after {
+        content: '';
+        flex: 1;
+        border-top: 1px solid var(--zelda-border-color);
+    }
+}
+
+.divider-left::before { flex: 0 0 5%; }
+.divider-left::after { flex: 1; }
+
+.divider-right::before { flex: 1; }
+.divider-right::after { flex: 0 0 5%; }
+
+.text {
+    padding: 0 var(--zelda-spacing-lg);
+    color: var(--zelda-text-color-secondary);
+    font-family: var(--zelda-font-family-heading);
+    font-size: var(--zelda-font-size-sm);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}

@@ -1,0 +1,72 @@
+.alert {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--zelda-spacing-md);
+    padding: var(--zelda-spacing-lg) var(--zelda-spacing-xl);
+    border: var(--zelda-border-width) solid;
+    border-radius: var(--zelda-border-radius-base);
+    font-size: var(--zelda-font-size-sm);
+}
+
+.alert-info {
+    background: rgba(0, 200, 255, 0.06);
+    border-color: rgba(0, 200, 255, 0.25);
+    color: var(--zelda-sheikah-color);
+}
+
+.alert-success {
+    background: rgba(76, 175, 80, 0.06);
+    border-color: rgba(76, 175, 80, 0.25);
+    color: var(--zelda-success-color);
+}
+
+.alert-warning {
+    background: rgba(255, 179, 0, 0.06);
+    border-color: rgba(255, 179, 0, 0.25);
+    color: var(--zelda-warning-color);
+}
+
+.alert-error {
+    background: rgba(229, 57, 53, 0.06);
+    border-color: rgba(229, 57, 53, 0.25);
+    color: var(--zelda-error-color);
+}
+
+.icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.content {
+    flex: 1;
+    min-width: 0;
+}
+
+.title {
+    font-weight: 600;
+    margin-bottom: var(--zelda-spacing-xs);
+}
+
+.description {
+    opacity: 0.85;
+}
+
+.close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    color: inherit;
+    opacity: 0.6;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: opacity var(--zelda-motion-duration-fast) var(--zelda-motion-ease);
+
+    &:hover {
+        opacity: 1;
+    }
+}

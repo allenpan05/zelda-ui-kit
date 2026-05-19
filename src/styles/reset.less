@@ -1,0 +1,56 @@
+// ============================================
+// zelda-ui-kit Reset & Base Styles
+// ============================================
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 14px;
+    line-height: var(--zelda-line-height-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: var(--zelda-font-family);
+    color: var(--zelda-text-color);
+    background-color: var(--zelda-bg-color);
+}
+
+a {
+    color: var(--zelda-sheikah-color);
+    text-decoration: none;
+
+    &:hover {
+        color: var(--zelda-sheikah-color-hover);
+    }
+}
+
+::selection {
+    background: rgba(0, 200, 255, 0.25);
+    color: #fff;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--zelda-bg-color-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--zelda-border-color-hover);
+    border-radius: 4px;
+
+    &:hover {
+        background: var(--zelda-sheikah-color);
+    }
+}

@@ -1,0 +1,240 @@
+.btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--zelda-spacing-sm);
+    font-family: var(--zelda-font-family);
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    border: var(--zelda-border-width) solid transparent;
+    border-radius: var(--zelda-border-radius-base);
+    transition: all var(--zelda-motion-duration-base) var(--zelda-motion-ease);
+    user-select: none;
+    outline: none;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-size: 12px;
+
+    &:focus-visible {
+        outline: 2px solid var(--zelda-sheikah-color);
+        outline-offset: 2px;
+        box-shadow: var(--zelda-glow-sm);
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+        opacity: 0.4;
+        box-shadow: none;
+    }
+}
+
+// ---------- Size ----------
+.btn-small {
+    height: var(--zelda-height-sm);
+    padding: 0 var(--zelda-spacing-lg);
+    font-size: var(--zelda-font-size-xs);
+}
+
+.btn-middle {
+    height: var(--zelda-height-base);
+    padding: 0 var(--zelda-spacing-xl);
+    font-size: var(--zelda-font-size-sm);
+}
+
+.btn-large {
+    height: var(--zelda-height-lg);
+    padding: 0 var(--zelda-spacing-xxl);
+    font-size: var(--zelda-font-size-base);
+}
+
+// ---------- Type: default ----------
+.btn-default {
+    color: var(--zelda-text-color);
+    background: var(--zelda-bg-color-secondary);
+    border-color: var(--zelda-border-color);
+
+    &:hover:not(:disabled) {
+        color: var(--zelda-primary-color);
+        border-color: var(--zelda-primary-color);
+        box-shadow: var(--zelda-glow-gold-sm);
+        transform: translateY(-1px);
+    }
+
+    &:active:not(:disabled) {
+        color: var(--zelda-primary-color-active);
+        border-color: var(--zelda-primary-color-active);
+        transform: translateY(0);
+    }
+}
+
+// ---------- Type: primary (Triforce Gold) ----------
+.btn-primary {
+    color: #1A1610;
+    background: linear-gradient(180deg, #E8C060 0%, #D4A843 50%, #B8922E 100%);
+    border-color: #B8922E;
+    box-shadow: 0 4px 0 0 #8A6B1E, var(--zelda-glow-gold-sm);
+
+    &:hover:not(:disabled) {
+        background: linear-gradient(180deg, #F0D070 0%, #E8C060 50%, #D4A843 100%);
+        transform: translateY(-1px);
+        box-shadow: 0 5px 0 0 #8A6B1E, var(--zelda-glow-gold-base);
+    }
+
+    &:active:not(:disabled) {
+        background: linear-gradient(180deg, #D4A843 0%, #B8922E 50%, #A07820 100%);
+        transform: translateY(2px);
+        box-shadow: 0 1px 0 0 #8A6B1E;
+    }
+}
+
+// ---------- Type: sheikah (Sheikah Cyan) ----------
+.btn-sheikah {
+    color: #0A0E12;
+    background: linear-gradient(180deg, #33D6FF 0%, #00C8FF 50%, #00A8D9 100%);
+    border-color: #00A8D9;
+    box-shadow: 0 4px 0 0 #007A9E, var(--zelda-glow-sm);
+
+    &:hover:not(:disabled) {
+        background: linear-gradient(180deg, #55E0FF 0%, #33D6FF 50%, #00C8FF 100%);
+        transform: translateY(-1px);
+        box-shadow: 0 5px 0 0 #007A9E, var(--zelda-glow-base);
+    }
+
+    &:active:not(:disabled) {
+        background: linear-gradient(180deg, #00C8FF 0%, #00A8D9 50%, #0088B0 100%);
+        transform: translateY(2px);
+        box-shadow: 0 1px 0 0 #007A9E;
+    }
+}
+
+// ---------- Type: dashed ----------
+.btn-dashed {
+    color: var(--zelda-text-color);
+    background: transparent;
+    border-color: var(--zelda-border-color);
+    border-style: dashed;
+
+    &:hover:not(:disabled) {
+        color: var(--zelda-primary-color);
+        border-color: var(--zelda-primary-color);
+        transform: translateY(-1px);
+    }
+}
+
+// ---------- Type: text ----------
+.btn-text {
+    color: var(--zelda-text-color);
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+
+    &:hover:not(:disabled) {
+        background: var(--zelda-bg-color-tertiary);
+    }
+}
+
+// ---------- Type: link ----------
+.btn-link {
+    color: var(--zelda-sheikah-color);
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+
+    &:hover:not(:disabled) {
+        color: var(--zelda-sheikah-color-hover);
+        opacity: 0.85;
+    }
+}
+
+// ---------- Danger ----------
+.btn-danger {
+    &.btn-primary {
+        color: #fff;
+        background: linear-gradient(180deg, #EF5350 0%, #E53935 50%, #C62828 100%);
+        border-color: #C62828;
+        box-shadow: 0 4px 0 0 #8B1A1A;
+
+        &:hover:not(:disabled) {
+            background: linear-gradient(180deg, #FF6659 0%, #EF5350 50%, #E53935 100%);
+            box-shadow: 0 5px 0 0 #8B1A1A;
+        }
+
+        &:active:not(:disabled) {
+            background: linear-gradient(180deg, #E53935 0%, #C62828 50%, #B71C1C 100%);
+            box-shadow: 0 1px 0 0 #8B1A1A;
+        }
+    }
+
+    &.btn-default,
+    &.btn-dashed {
+        color: var(--zelda-error-color);
+        border-color: var(--zelda-error-color);
+
+        &:hover:not(:disabled) {
+            color: var(--zelda-error-color-hover);
+            border-color: var(--zelda-error-color-hover);
+        }
+    }
+}
+
+// ---------- Ghost ----------
+.btn-ghost {
+    background: transparent;
+    box-shadow: none;
+
+    &.btn-primary {
+        color: var(--zelda-primary-color);
+        background: transparent;
+        box-shadow: none;
+
+        &:hover:not(:disabled) {
+            background: var(--zelda-primary-color-bg);
+        }
+    }
+
+    &.btn-sheikah {
+        color: var(--zelda-sheikah-color);
+        background: transparent;
+        box-shadow: none;
+
+        &:hover:not(:disabled) {
+            background: var(--zelda-sheikah-color-bg);
+        }
+    }
+}
+
+// ---------- Block ----------
+.btn-block {
+    display: flex;
+    width: 100%;
+}
+
+// ---------- Loading ----------
+.btn-loading {
+    cursor: default;
+    pointer-events: none;
+}
+
+.btn-spinner {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: zelda-spin 0.6s linear infinite;
+}
+
+.btn-icon {
+    display: inline-flex;
+    align-items: center;
+}
+
+@keyframes zelda-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

@@ -1,0 +1,46 @@
+@import '../../styles/variables.less';
+@import '../../styles/mixins.less';
+
+.zelda-sheikah-icon {
+  .font-hylian-symbol();
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  color: @zelda-primary;
+  transition: @transition-fast;
+
+  &--xs {
+    font-size: 12px;
+  }
+
+  &--sm {
+    font-size: 16px;
+  }
+
+  &--md {
+    font-size: 24px;
+  }
+
+  &--lg {
+    font-size: 32px;
+  }
+
+  &--xl {
+    font-size: 48px;
+  }
+
+  &--glowing {
+    text-shadow: 0 0 8px @zelda-primary, 0 0 16px rgba(0, 200, 184, 0.3);
+    animation: sheikahIconGlow 2s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes sheikahIconGlow {
+  from {
+    text-shadow: 0 0 5px @zelda-primary, 0 0 10px rgba(0, 200, 184, 0.2);
+  }
+  to {
+    text-shadow: 0 0 12px @zelda-primary, 0 0 24px rgba(0, 200, 184, 0.4);
+  }
+}

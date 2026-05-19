@@ -1,0 +1,536 @@
+// ============================================
+// Zelda UI Kit - Demo Styles
+// ============================================
+
+@import '../src/styles/variables.less';
+
+// ============================================
+// Dark Mode Variables
+// ============================================
+
+@demo-bg: #1A1610;
+@demo-bg-light: #242018;
+@demo-text: #E8E0D0;
+@demo-text-secondary: #A89880;
+@demo-border: #3A3428;
+@demo-accent: #D4A843;
+@demo-glow: rgba(0, 200, 255, 0.1);
+
+// ============================================
+// Light Mode Variables
+// ============================================
+
+@demo-light-bg: #FAFAF5;
+@demo-light-bg-light: #FFFFFF;
+@demo-light-text: #2D3436;
+@demo-light-text-secondary: #636E72;
+@demo-light-border: #DFE6E9;
+@demo-light-accent: #8B6914;
+@demo-light-glow: rgba(0, 200, 184, 0.1);
+
+// ============================================
+// CSS Variables for Theme Switching
+// ============================================
+
+:root {
+  --demo-bg: @demo-bg;
+  --demo-bg-light: @demo-bg-light;
+  --demo-text: @demo-text;
+  --demo-text-secondary: @demo-text-secondary;
+  --demo-border: @demo-border;
+  --demo-accent: @demo-accent;
+  --demo-glow: @demo-glow;
+}
+
+[data-theme="light"] {
+  --demo-bg: @demo-light-bg;
+  --demo-bg-light: @demo-light-bg-light;
+  --demo-text: @demo-light-text;
+  --demo-text-secondary: @demo-light-text-secondary;
+  --demo-border: @demo-light-border;
+  --demo-accent: @demo-light-accent;
+  --demo-glow: @demo-light-glow;
+}
+
+// ============================================
+// 基礎樣式
+// ============================================
+
+.demo {
+  min-height: 100vh;
+  background: var(--demo-bg);
+  color: var(--demo-text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+// ============================================
+// Header
+// ============================================
+
+.demo-header {
+  position: relative;
+  padding: 80px 0 60px;
+  text-align: center;
+  background: linear-gradient(180deg, var(--demo-bg-light) 0%, var(--demo-bg) 100%);
+  border-bottom: 1px solid var(--demo-border);
+  overflow: hidden;
+  transition: background 0.3s ease, border-color 0.3s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, @demo-glow 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--demo-accent), transparent);
+  }
+}
+
+.demo-header-content {
+  position: relative;
+  z-index: 1;
+}
+
+.demo-logo {
+  margin-bottom: 16px;
+}
+
+.demo-triforce {
+  font-size: 48px;
+  color: var(--demo-accent);
+  text-shadow: 0 0 30px rgba(212, 168, 67, 0.5);
+  animation: triforce-pulse 2s ease-in-out infinite;
+}
+
+.demo-title {
+  font-family: 'Hylia Serif', 'Georgia', serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--demo-accent);
+  letter-spacing: 0.08em;
+  margin: 0 0 12px;
+  text-shadow: 0 0 30px rgba(212, 168, 67, 0.3);
+}
+
+.demo-subtitle {
+  font-size: 16px;
+  color: var(--demo-text-secondary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0 0 24px;
+}
+
+.demo-header-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.demo-theme-toggle {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10;
+}
+
+// ============================================
+// Main Layout
+// ============================================
+
+.demo-main {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  gap: 40px;
+}
+
+// ============================================
+// Navigation
+// ============================================
+
+.demo-nav {
+  position: sticky;
+  top: 24px;
+  width: 200px;
+  flex-shrink: 0;
+  height: fit-content;
+}
+
+.demo-nav-inner {
+  background: var(--demo-bg-light);
+  border: 1px solid var(--demo-border);
+  border-radius: @radius-lg;
+  padding: 16px;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.demo-nav-title {
+  font-family: 'Hylia Serif', 'Georgia', serif;
+  font-size: 14px;
+  color: var(--demo-accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--demo-border);
+}
+
+.demo-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    margin-bottom: 4px;
+  }
+
+  a {
+    display: block;
+    padding: 6px 8px;
+    color: var(--demo-text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    border-radius: @radius-sm;
+    transition: all 0.2s ease;
+
+    &:hover {
+      color: var(--demo-text);
+      background: rgba(0, 0, 0, 0.05);
+    }
+  }
+
+  [data-theme="dark"] & {
+    a:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+  }
+}
+
+// ============================================
+// Content
+// ============================================
+
+.demo-content {
+  flex: 1;
+  min-width: 0;
+}
+
+// ============================================
+// Sections
+// ============================================
+
+.demo-section {
+  margin-bottom: 48px;
+  scroll-margin-top: 24px;
+}
+
+.demo-section-header {
+  margin-bottom: 24px;
+}
+
+.demo-section-title {
+  font-family: 'Hylia Serif', 'Georgia', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--demo-accent);
+  letter-spacing: 0.06em;
+  margin: 0 0 8px;
+}
+
+.demo-section-desc {
+  color: var(--demo-text-secondary);
+  font-size: 14px;
+  margin: 0;
+}
+
+// ============================================
+// Blocks
+// ============================================
+
+.demo-block {
+  background: var(--demo-bg-light);
+  border: 1px solid var(--demo-border);
+  border-radius: @radius-lg;
+  padding: 24px;
+  margin-bottom: 16px;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.demo-block-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--demo-accent);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin: 0 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--demo-border);
+}
+
+// ============================================
+// Rows & Grids
+// ============================================
+
+.demo-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.demo-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+// ============================================
+// Interactive Elements
+// ============================================
+
+.demo-interactive {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 24px;
+  background: var(--demo-glow);
+  border-radius: @radius-lg;
+  border: 1px dashed var(--demo-border);
+}
+
+.demo-heart-display {
+  transform: scale(1.2);
+}
+
+.demo-heart-controls {
+  display: flex;
+  gap: 12px;
+}
+
+.demo-heart-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  background: var(--demo-glow);
+  border-radius: @radius-md;
+
+  span {
+    font-size: 12px;
+    color: var(--demo-text-secondary);
+  }
+}
+
+// ============================================
+// Rupee
+// ============================================
+
+.demo-rupees {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+}
+
+.demo-rupee-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 24px;
+  background: var(--demo-glow);
+  border-radius: @radius-md;
+
+  span {
+    font-size: 12px;
+    color: var(--demo-text-secondary);
+  }
+}
+
+.demo-rupee-value {
+  font-family: 'Hylia Serif', 'Georgia', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--demo-text);
+}
+
+// ============================================
+// Dialogue
+// ============================================
+
+.demo-dialogue-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+// ============================================
+// Inventory
+// ============================================
+
+.demo-inventory-container {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.demo-inventory-detail {
+  width: 280px;
+  flex-shrink: 0;
+}
+
+.demo-inventory-info {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.demo-inventory-icon {
+  font-size: 48px;
+  line-height: 1;
+}
+
+// ============================================
+// Map
+// ============================================
+
+.demo-map-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: center;
+}
+
+.demo-map-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+
+  span {
+    font-size: 12px;
+    color: var(--demo-text-secondary);
+  }
+}
+
+// ============================================
+// Panels
+// ============================================
+
+.demo-panels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 16px;
+}
+
+// ============================================
+// Footer
+// ============================================
+
+.demo-footer {
+  text-align: center;
+  padding: 48px 24px;
+  border-top: 1px solid var(--demo-border);
+  background: var(--demo-bg-light);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.demo-footer-content {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.demo-footer-logo {
+  font-family: 'Hylia Serif', 'Georgia', serif;
+  font-size: 20px;
+  color: var(--demo-accent);
+  margin: 0 0 8px;
+}
+
+.demo-footer-text {
+  color: var(--demo-text-secondary);
+  font-size: 14px;
+  margin: 0 0 4px;
+}
+
+.demo-footer-sub {
+  color: rgba(168, 152, 128, 0.5);
+  font-size: 11px;
+  margin: 0;
+}
+
+// ============================================
+// Animations
+// ============================================
+
+@keyframes triforce-pulse {
+  0%, 100% {
+    opacity: 1;
+    text-shadow: 0 0 10px rgba(212, 168, 67, 0.5);
+  }
+  50% {
+    opacity: 0.7;
+    text-shadow: 0 0 20px rgba(212, 168, 67, 0.8);
+  }
+}
+
+// ============================================
+// Responsive
+// ============================================
+
+@media (max-width: 768px) {
+  .demo-main {
+    flex-direction: column;
+    padding: 24px 16px;
+  }
+
+  .demo-nav {
+    position: static;
+    width: 100%;
+  }
+
+  .demo-nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .demo-nav-list li {
+    margin-bottom: 0;
+  }
+
+  .demo-header {
+    padding: 48px 0 36px;
+  }
+
+  .demo-title {
+    font-size: 32px;
+  }
+
+  .demo-inventory-container {
+    flex-direction: column;
+  }
+
+  .demo-inventory-detail {
+    width: 100%;
+  }
+}

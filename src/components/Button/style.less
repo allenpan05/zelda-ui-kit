@@ -1,0 +1,154 @@
+@import '../../styles/variables.less';
+@import '../../styles/mixins.less';
+
+// ============================================
+// Button 樣式
+// ============================================
+
+.zelda-button {
+  .button-base();
+  position: relative;
+  overflow: hidden;
+
+  // 尺寸變體
+  &--sm {
+    .button-size-sm();
+  }
+
+  &--md {
+    .button-size-md();
+  }
+
+  &--lg {
+    .button-size-lg();
+  }
+
+  // 類型變體
+  &--primary {
+    background: @zelda-primary;
+    color: @zelda-white;
+    border-color: @zelda-primary;
+
+    &:hover:not(:disabled) {
+      background: @zelda-primary-dark;
+      border-color: @zelda-primary-dark;
+      .glow-effect(@zelda-primary);
+    }
+
+    &:active:not(:disabled) {
+      transform: scale(0.98);
+    }
+  }
+
+  &--secondary {
+    background: @zelda-sand;
+    color: @zelda-brown;
+    border-color: @zelda-brown;
+
+    &:hover:not(:disabled) {
+      background: darken(@zelda-sand, 5%);
+      border-color: @zelda-primary;
+      color: @zelda-primary-dark;
+    }
+
+    &:active:not(:disabled) {
+      transform: scale(0.98);
+    }
+  }
+
+  &--outline {
+    background: transparent;
+    color: @zelda-primary;
+    border-color: @zelda-primary;
+
+    &:hover:not(:disabled) {
+      background: @zelda-primary-bg;
+      .glow-border(@zelda-primary);
+    }
+
+    &:active:not(:disabled) {
+      transform: scale(0.98);
+    }
+  }
+
+  &--ghost {
+    background: transparent;
+    color: @zelda-text;
+    border-color: transparent;
+
+    &:hover:not(:disabled) {
+      background: @zelda-primary-bg;
+      color: @zelda-primary-dark;
+    }
+
+    &:active:not(:disabled) {
+      transform: scale(0.98);
+    }
+  }
+
+  &--danger {
+    background: @zelda-danger;
+    color: @zelda-white;
+    border-color: @zelda-danger;
+
+    &:hover:not(:disabled) {
+      background: darken(@zelda-danger, 10%);
+      border-color: darken(@zelda-danger, 10%);
+      .glow-effect(@zelda-danger);
+    }
+
+    &:active:not(:disabled) {
+      transform: scale(0.98);
+    }
+  }
+
+  // 只有圖標時
+  &--icon-only {
+    padding: @space-sm;
+
+    &.zelda-button--sm {
+      padding: @space-xs;
+    }
+
+    &.zelda-button--lg {
+      padding: @space-md;
+    }
+  }
+
+  // 載入中狀態
+  &--loading {
+    .zelda-button__text {
+      opacity: 0.7;
+    }
+  }
+
+  // 內部元素
+  &__spinner {
+    display: inline-flex;
+    animation: spin 1s linear infinite;
+
+    svg {
+      width: 1em;
+      height: 1em;
+    }
+  }
+
+  &__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__text {
+    display: inline-block;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

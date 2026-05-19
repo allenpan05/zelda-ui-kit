@@ -1,0 +1,122 @@
+// ============================================
+// Zelda UI Kit - Global Styles
+// ============================================
+
+@import './variables.less';
+@import './mixins.less';
+@import './fonts.less';
+
+// ============================================
+// CSS Variables (供 JS 訪問)
+// ============================================
+
+:root {
+  // 主色
+  --zelda-primary: @zelda-primary;
+  --zelda-primary-dark: @zelda-primary-dark;
+  --zelda-primary-light: @zelda-primary-light;
+  --zelda-primary-bg: @zelda-primary-bg;
+
+  // 輔助色
+  --zelda-accent: @zelda-accent;
+  --zelda-green: @zelda-green;
+  --zelda-brown: @zelda-brown;
+  --zelda-sand: @zelda-sand;
+
+  // 遊戲元素色
+  --zelda-heart: @zelda-heart;
+  --zelda-heart-bg: @zelda-heart-bg;
+  --zelda-stamina: @zelda-stamina;
+
+  // 寶石色
+  --zelda-rupee-green: @zelda-rupee-green;
+  --zelda-rupee-blue: @zelda-rupee-blue;
+  --zelda-rupee-red: @zelda-rupee-red;
+  --zelda-rupee-purple: @zelda-rupee-purple;
+  --zelda-rupee-gold: @zelda-rupee-gold;
+
+  // 功能色
+  --zelda-success: @zelda-success;
+  --zelda-warning: @zelda-warning;
+  --zelda-danger: @zelda-danger;
+  --zelda-info: @zelda-info;
+
+  // 中性色
+  --zelda-text: @zelda-text;
+  --zelda-text-secondary: @zelda-text-secondary;
+  --zelda-text-light: @zelda-text-light;
+  --zelda-border: @zelda-border;
+  --zelda-bg: @zelda-bg;
+  --zelda-white: @zelda-white;
+
+  // Sheikah
+  --zelda-sheikah-bg: @zelda-sheikah-bg;
+  --zelda-sheikah-border: @zelda-sheikah-border;
+  --zelda-sheikah-glow: @zelda-sheikah-glow;
+
+  // 間距
+  --space-xs: @space-xs;
+  --space-sm: @space-sm;
+  --space-md: @space-md;
+  --space-lg: @space-lg;
+  --space-xl: @space-xl;
+  --space-2xl: @space-2xl;
+
+  // 圓角
+  --radius-sm: @radius-sm;
+  --radius-md: @radius-md;
+  --radius-lg: @radius-lg;
+  --radius-xl: @radius-xl;
+  --radius-full: @radius-full;
+}
+
+// ============================================
+// 全局重置
+// ============================================
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  .font-body();
+  color: @zelda-text;
+  background-color: @zelda-bg;
+  line-height: @line-height-normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// ============================================
+// 工具類
+// ============================================
+
+.font-hylia {
+  .font-hylia();
+}
+
+.text-primary {
+  color: @zelda-primary;
+}
+
+.text-accent {
+  color: @zelda-accent;
+}
+
+.text-green {
+  color: @zelda-green;
+}
+
+.text-brown {
+  color: @zelda-brown;
+}
+
+.bg-sand {
+  background-color: @zelda-sand;
+}
+
+.bg-sheikah {
+  background-color: @zelda-sheikah-bg;
+}

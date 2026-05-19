@@ -1,0 +1,187 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - heading "◆ Zelda UI Kit" [level=1] [ref=e6]:
+        - generic [ref=e7]: ◆
+        - text: Zelda UI Kit
+      - paragraph [ref=e8]: Sheikah-inspired React Component Library
+  - main [ref=e9]:
+    - generic [ref=e10]:
+      - heading "Buttons" [level=2] [ref=e11]
+      - generic [ref=e12]:
+        - button "Primary" [ref=e13] [cursor=pointer]:
+          - generic [ref=e14]: Primary
+        - button "Secondary" [ref=e15] [cursor=pointer]:
+          - generic [ref=e16]: Secondary
+        - button "Outline" [ref=e17] [cursor=pointer]:
+          - generic [ref=e18]: Outline
+        - button "Ghost" [ref=e19] [cursor=pointer]:
+          - generic [ref=e20]: Ghost
+        - button "Danger" [ref=e21] [cursor=pointer]:
+          - generic [ref=e22]: Danger
+      - generic [ref=e23]:
+        - button "Small" [ref=e24] [cursor=pointer]:
+          - generic [ref=e25]: Small
+        - button "Medium" [ref=e26] [cursor=pointer]:
+          - generic [ref=e27]: Medium
+        - button "Large" [ref=e28] [cursor=pointer]:
+          - generic [ref=e29]: Large
+      - generic [ref=e30]:
+        - button "Loading" [disabled] [ref=e31]:
+          - img [ref=e33]
+          - generic [ref=e35]: Loading
+        - button "Disabled" [disabled] [ref=e36]:
+          - generic [ref=e37]: Disabled
+        - button "⚔️ With Icon" [ref=e38] [cursor=pointer]:
+          - generic [ref=e40]: ⚔️
+          - generic [ref=e41]: With Icon
+    - generic [ref=e42]:
+      - heading "Cards" [level=2] [ref=e43]
+      - generic [ref=e44]:
+        - generic [ref=e46] [cursor=pointer]:
+          - generic [ref=e47]:
+            - generic [ref=e49]: Shrine Quest
+            - generic [ref=e51]: Active
+          - paragraph [ref=e53]: Discover and complete the hidden shrine in the Dueling Peaks region.
+        - generic [ref=e55] [cursor=pointer]:
+          - generic [ref=e58]: Divine Beast
+          - paragraph [ref=e60]: Free Vah Ruta from Ganon's corruption in the Lanayru region.
+        - generic [ref=e62]:
+          - generic [ref=e65]: Sheikah Terminal
+          - paragraph [ref=e67]: Accessing ancient Sheikah data...
+    - generic [ref=e68]:
+      - heading "Badges" [level=2] [ref=e69]
+      - generic [ref=e70]:
+        - generic [ref=e71]: Default
+        - generic [ref=e72]: Primary
+        - generic [ref=e73]: Success
+        - generic [ref=e74]: Warning
+        - generic [ref=e75]: Danger
+        - generic [ref=e76]: Info
+      - generic [ref=e77]:
+        - generic [ref=e78]:
+          - button "Messages" [ref=e79] [cursor=pointer]:
+            - generic [ref=e80]: Messages
+          - generic [ref=e81]: "5"
+        - generic [ref=e82]:
+          - button "Items" [ref=e83] [cursor=pointer]:
+            - generic [ref=e84]: Items
+          - generic [ref=e85]: "99"
+        - button "Notifications" [ref=e87] [cursor=pointer]:
+          - generic [ref=e88]: Notifications
+    - generic [ref=e90]:
+      - heading "Heart (生命值)" [level=2] [ref=e91]
+      - generic [ref=e104]: 8/10
+      - generic [ref=e105]:
+        - button "- Damage" [ref=e106] [cursor=pointer]:
+          - generic [ref=e107]: "- Damage"
+        - button "+ Heal" [ref=e108] [cursor=pointer]:
+          - generic [ref=e109]: + Heal
+    - generic [ref=e162]:
+      - heading "Rupee (寶石計數器)" [level=2] [ref=e163]
+      - generic [ref=e164]:
+        - generic [ref=e169]: 1,234
+        - generic [ref=e174]: "567"
+        - generic [ref=e179]: "89"
+      - generic [ref=e180]:
+        - generic [ref=e185]: "50"
+        - generic [ref=e190]: "999"
+        - generic [ref=e195]: 10k
+    - generic [ref=e196]:
+      - heading "DialogueBox (對話框)" [level=2] [ref=e197]
+      - button "Show Dialogue" [ref=e199] [cursor=pointer]:
+        - generic [ref=e200]: Show Dialogue
+      - generic [ref=e347]:
+        - generic [ref=e348]: Zelda
+        - generic [ref=e349] [cursor=pointer]: Link... You are our last hope. The Calamity Ganon grows stronger with each passing moment. We must act now to save Hyrule from destruction!
+        - button "關閉" [ref=e352] [cursor=pointer]
+      - generic [ref=e202]:
+        - generic [ref=e203]: 👴
+        - generic [ref=e204]:
+          - generic [ref=e205]: Old Man
+          - generic [ref=e206] [cursor=pointer]: Ah, you're awake. You've been asleep for quite some time... Welcome to the world of Hyrule!
+          - button "關閉" [ref=e208] [cursor=pointer]
+    - generic [ref=e209]:
+      - heading "InventoryGrid (物品欄)" [level=2] [ref=e210]
+      - generic [ref=e212]:
+        - button "Master Sword" [active] [ref=e213] [cursor=pointer]:
+          - generic [ref=e214]: 🗡️
+          - text: ★
+        - button "Hylian Shield" [ref=e217] [cursor=pointer]:
+          - generic [ref=e218]: 🛡️
+        - button "Bow of Light" [ref=e221] [cursor=pointer]:
+          - generic [ref=e222]: 🏹
+        - button "Apple" [ref=e225] [cursor=pointer]:
+          - generic [ref=e226]: 🍎
+          - generic [ref=e227]: "15"
+        - button "Meat" [ref=e228] [cursor=pointer]:
+          - generic [ref=e229]: 🍖
+          - generic [ref=e230]: "8"
+        - button "Diamond" [ref=e231] [cursor=pointer]:
+          - generic [ref=e232]: 💎
+          - generic [ref=e233]: "3"
+        - button "Ancient Core" [ref=e234] [cursor=pointer]:
+          - generic [ref=e235]: 🔮
+          - generic [ref=e236]: "5"
+        - button "Hearty Radish" [ref=e237] [cursor=pointer]:
+          - generic [ref=e238]: 🌿
+          - generic [ref=e239]: "12"
+        - button "Empty slot" [ref=e240]
+        - button "Empty slot" [ref=e242]
+        - button "Empty slot" [ref=e244]
+        - button "Empty slot" [ref=e246]
+        - button "Empty slot" [ref=e248]
+        - button "Empty slot" [ref=e250]
+        - button "Empty slot" [ref=e252]
+      - generic [ref=e354]:
+        - generic [ref=e357]: Master Sword
+        - generic [ref=e358]:
+          - paragraph [ref=e359]: "Selected: Master Sword"
+          - paragraph [ref=e360]: "Type: weapon"
+          - paragraph [ref=e361]: "Durability: 100%"
+    - generic [ref=e254]:
+      - heading "MapMarker (地圖標記)" [level=2] [ref=e255]
+      - generic [ref=e256]:
+        - button "Sheikah Tower" [ref=e257] [cursor=pointer]:
+          - img [ref=e259]
+          - generic [ref=e261]: Sheikah Tower
+        - button "Shrine" [ref=e262] [cursor=pointer]:
+          - img [ref=e264]
+          - generic [ref=e266]: Shrine
+        - button "Stable" [ref=e267] [cursor=pointer]:
+          - img [ref=e269]
+          - generic [ref=e271]: Stable
+        - button "Village" [ref=e272] [cursor=pointer]:
+          - img [ref=e274]
+          - generic [ref=e276]: Village
+        - button "Custom" [ref=e277] [cursor=pointer]:
+          - img [ref=e279]
+          - generic [ref=e281]: Custom
+      - generic [ref=e282]:
+        - button "Undiscovered" [ref=e283] [cursor=pointer]:
+          - img [ref=e285]
+          - generic [ref=e287]: Undiscovered
+        - button "Activated" [ref=e288] [cursor=pointer]:
+          - img [ref=e290]
+          - generic [ref=e292]: Activated
+    - generic [ref=e293]:
+      - heading "SheikahPanel (希卡之石面板)" [level=2] [ref=e294]
+      - generic [ref=e295]:
+        - generic [ref=e296]:
+          - generic [ref=e302]:
+            - generic [ref=e303]: Sheikah Slate
+            - generic [ref=e304]: Ancient Technology
+          - generic [ref=e305]:
+            - paragraph [ref=e306]: Welcome, hero. I am your Sheikah Slate, a multipurpose ancient artifact.
+            - paragraph [ref=e307]: "Functions include: Map, Camera, Album, and Rune abilities."
+        - generic [ref=e308]:
+          - generic [ref=e313]:
+            - generic [ref=e315]: Terminal
+            - button [ref=e316] [cursor=pointer]:
+              - img [ref=e317]
+          - generic [ref=e319]:
+            - paragraph [ref=e320]: Accessing Hyrule Castle network...
+            - paragraph [ref=e321]: "Calamity Ganon containment level: 87%"
+  - contentinfo [ref=e322]:
+    - paragraph [ref=e323]: "Zelda UI Kit — Inspired by The Legend of Zelda: Breath of the Wild"
+    - paragraph [ref=e324]: This is a fan project for educational purposes only. Not affiliated with Nintendo.

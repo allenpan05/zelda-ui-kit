@@ -1,0 +1,104 @@
+@import '../../styles/variables.less';
+@import '../../styles/mixins.less';
+
+// ============================================
+// DialogueBox 樣式
+// ============================================
+
+.zelda-dialogue {
+  display: flex;
+  gap: @space-md;
+  background: rgba(0, 0, 0, 0.85);
+  border: 2px solid @zelda-primary;
+  border-radius: @radius-lg;
+  padding: @space-lg;
+  color: @zelda-white;
+  min-height: 120px;
+  position: relative;
+  box-shadow: @glow-sheikah;
+
+  &__avatar {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    border-radius: @radius-md;
+    overflow: hidden;
+    border: 2px solid @zelda-primary;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: @space-sm;
+  }
+
+  &__speaker {
+    .font-hylia();
+    font-size: @font-size-lg;
+    font-weight: 700;
+    color: @zelda-primary-light;
+    letter-spacing: 0.5px;
+  }
+
+  &__text {
+    flex: 1;
+    font-size: @font-size-md;
+    line-height: @line-height-relaxed;
+    color: @zelda-white;
+    cursor: pointer;
+    min-height: 48px;
+  }
+
+  &__cursor {
+    display: inline-block;
+    color: @zelda-primary;
+    animation: blink 0.7s step-end infinite;
+    margin-left: 2px;
+  }
+
+  &__hint {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: @space-xs;
+  }
+
+  &__close {
+    .button-base();
+    padding: @space-xs @space-md;
+    font-size: @font-size-sm;
+    background: transparent;
+    color: @zelda-primary;
+    border-color: @zelda-primary;
+
+    &:hover {
+      background: @zelda-primary;
+      color: @zelda-white;
+    }
+  }
+
+  &__continue {
+    color: @zelda-primary;
+    animation: bounce 1s ease-in-out infinite;
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}

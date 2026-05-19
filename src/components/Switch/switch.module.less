@@ -1,0 +1,91 @@
+.switch {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    outline: none;
+
+    &:focus-visible .track {
+        outline: 2px solid var(--zelda-sheikah-color);
+        outline-offset: 2px;
+    }
+}
+
+.switch-small .track {
+    width: 36px;
+    height: 20px;
+}
+
+.switch-small .thumb {
+    width: 16px;
+    height: 16px;
+}
+
+.switch-small.switch-checked .thumb {
+    transform: translateX(16px);
+}
+
+.switch-middle .track {
+    width: 44px;
+    height: 24px;
+}
+
+.switch-middle .thumb {
+    width: 20px;
+    height: 20px;
+}
+
+.switch-middle.switch-checked .thumb {
+    transform: translateX(20px);
+}
+
+.switch-disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.track {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: var(--zelda-bg-color-tertiary);
+    border: var(--zelda-border-width) solid var(--zelda-border-color);
+    border-radius: 999px;
+    transition: all var(--zelda-motion-duration-base) var(--zelda-motion-ease);
+}
+
+.thumb {
+    position: relative;
+    z-index: 1;
+    background: var(--zelda-text-color-secondary);
+    border-radius: 50%;
+    transition: all var(--zelda-motion-duration-base) var(--zelda-motion-ease);
+    margin: 0 2px;
+}
+
+.glow {
+    position: absolute;
+    inset: -2px;
+    border-radius: 999px;
+    background: var(--zelda-sheikah-color);
+    opacity: 0.15;
+    animation: zelda-switch-glow-pulse 2s ease-in-out infinite;
+}
+
+.switch-checked .track {
+    background: var(--zelda-sheikah-color);
+    border-color: var(--zelda-sheikah-color-active);
+}
+
+.switch-checked .thumb {
+    background: #fff;
+    box-shadow: 0 0 6px rgba(0, 200, 255, 0.5);
+}
+
+@keyframes zelda-switch-glow-pulse {
+    0%, 100% { opacity: 0.15; }
+    50% { opacity: 0.3; }
+}

@@ -1,0 +1,61 @@
+{
+    "name": "zelda-ui-kit",
+    "version": "0.1.0",
+    "description": "A Zelda-inspired React UI component library with Sheikah & Hyrule aesthetics",
+    "type": "module",
+    "main": "dist/cjs/index.cjs",
+    "module": "dist/es/index.js",
+    "types": "dist/types/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/types/index.d.ts",
+            "import": "./dist/es/index.js",
+            "require": "./dist/cjs/index.cjs"
+        },
+        "./style": "./dist/index.css",
+        "./dist/index.css": "./dist/index.css"
+    },
+    "files": [
+        "dist",
+        "README.md"
+    ],
+    "sideEffects": [
+        "**/*.css",
+        "**/*.less"
+    ],
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build && tsc --project tsconfig.build.json --emitDeclarationOnly",
+        "build:demo": "vite build --config vite.config.demo.ts",
+        "prepublishOnly": "npm run build"
+    },
+    "peerDependencies": {
+        "react": ">=17.0.0",
+        "react-dom": ">=17.0.0"
+    },
+    "dependencies": {
+        "classnames": "^2.5.1"
+    },
+    "devDependencies": {
+        "@types/node": "^20.11.0",
+        "@types/react": "^18.3.18",
+        "@types/react-dom": "^18.3.5",
+        "@vitejs/plugin-react": "^4.2.1",
+        "less": "^4.2.1",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "typescript": "^5.7.3",
+        "vite": "^5.4.11",
+        "vite-plugin-dts": "^4.3.0"
+    },
+    "keywords": [
+        "react",
+        "component-library",
+        "ui",
+        "typescript",
+        "zelda",
+        "sheikah",
+        "hyrule"
+    ],
+    "license": "MIT"
+}

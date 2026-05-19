@@ -1,0 +1,74 @@
+.tabs {
+    display: flex;
+    flex-direction: column;
+}
+
+.nav {
+    display: flex;
+    gap: var(--zelda-spacing-xs);
+    border-bottom: 1px solid var(--zelda-border-color);
+    padding: 0 var(--zelda-spacing-sm);
+}
+
+.tab {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--zelda-spacing-xs);
+    padding: var(--zelda-spacing-md) var(--zelda-spacing-lg);
+    background: transparent;
+    border: none;
+    color: var(--zelda-text-color-secondary);
+    font-family: var(--zelda-font-family-heading);
+    font-size: var(--zelda-font-size-sm);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all var(--zelda-motion-duration-fast) var(--zelda-motion-ease);
+    white-space: nowrap;
+
+    &:hover:not(:disabled) {
+        color: var(--zelda-text-color);
+    }
+}
+
+.tab-active {
+    color: var(--zelda-sheikah-color);
+}
+
+.tab-disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.indicator {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--zelda-sheikah-color);
+    box-shadow: 0 0 8px var(--zelda-sheikah-color);
+    animation: zelda-tab-slide var(--zelda-motion-duration-base) var(--zelda-motion-ease);
+}
+
+.content {
+    padding: var(--zelda-spacing-xl);
+    animation: zelda-tab-fade var(--zelda-motion-duration-base) var(--zelda-motion-ease);
+}
+
+@keyframes zelda-tab-slide {
+    from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
+}
+
+@keyframes zelda-tab-fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

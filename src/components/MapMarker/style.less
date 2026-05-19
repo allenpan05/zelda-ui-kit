@@ -1,0 +1,134 @@
+@import '../../styles/variables.less';
+@import '../../styles/mixins.less';
+
+// ============================================
+// MapMarker 樣式
+// ============================================
+
+.zelda-map-marker {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: @space-xs;
+  cursor: pointer;
+  transition: @transition-normal;
+  position: relative;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 3px solid currentColor;
+    background: @zelda-white;
+    box-shadow: @shadow-md;
+    transition: @transition-normal;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &__label {
+    .font-hylia();
+    font-size: @font-size-xs;
+    font-weight: 700;
+    color: @zelda-text;
+    text-align: center;
+    white-space: nowrap;
+    text-shadow: 0 0 3px @zelda-white;
+  }
+
+  &__pulse {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid currentColor;
+    animation: markerPulse 2s ease-out infinite;
+    pointer-events: none;
+  }
+
+  // 類型顏色
+  &--tower {
+    color: @zelda-primary;
+
+    .zelda-map-marker__icon {
+      background: @zelda-primary-bg;
+    }
+  }
+
+  &--shrine {
+    color: @zelda-warning;
+
+    .zelda-map-marker__icon {
+      background: #FFF3E0;
+    }
+  }
+
+  &--stable {
+    color: @zelda-brown;
+
+    .zelda-map-marker__icon {
+      background: @zelda-sand;
+    }
+  }
+
+  &--village {
+    color: @zelda-green;
+
+    .zelda-map-marker__icon {
+      background: #E8F5E9;
+    }
+  }
+
+  &--custom {
+    color: @zelda-danger;
+
+    .zelda-map-marker__icon {
+      background: #FFEBEE;
+    }
+  }
+
+  // 狀態
+  &--active {
+    .zelda-map-marker__icon {
+      box-shadow: @glow-primary;
+      transform: scale(1.1);
+    }
+  }
+
+  &--undiscovered {
+    opacity: 0.5;
+    filter: grayscale(100%);
+
+    .zelda-map-marker__icon {
+      border-style: dashed;
+    }
+
+    .zelda-map-marker__label {
+      color: @zelda-text-light;
+    }
+  }
+}
+
+@keyframes markerPulse {
+  0% {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50%) scale(1.5);
+    opacity: 0;
+  }
+}

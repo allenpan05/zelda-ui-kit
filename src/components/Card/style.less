@@ -1,0 +1,143 @@
+@import '../../styles/variables.less';
+@import '../../styles/mixins.less';
+
+// ============================================
+// Card 樣式
+// ============================================
+
+.zelda-card {
+  .card-base();
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  // 變體
+  &--default {
+    background: @zelda-white;
+    border-color: @zelda-border;
+  }
+
+  &--elevated {
+    .card-elevated();
+  }
+
+  &--outlined {
+    background: transparent;
+    border-color: @zelda-brown;
+    border-width: 2px;
+  }
+
+  &--sheikah {
+    .sheikah-panel();
+
+    .zelda-card__title {
+      color: @zelda-primary-light;
+    }
+
+    .zelda-card__subtitle {
+      color: @zelda-primary;
+    }
+
+    .zelda-card__content {
+      color: @zelda-white;
+    }
+  }
+
+  // 內邊距
+  &--padding-none {
+    .zelda-card__body {
+      padding: 0;
+    }
+  }
+
+  &--padding-sm {
+    .zelda-card__body {
+      padding: @space-sm;
+    }
+  }
+
+  &--padding-md {
+    .zelda-card__body {
+      padding: @space-md;
+    }
+  }
+
+  &--padding-lg {
+    .zelda-card__body {
+      padding: @space-lg;
+    }
+  }
+
+  // 懸停效果
+  &--hoverable {
+    cursor: pointer;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: @shadow-lg;
+      border-color: @zelda-primary;
+    }
+  }
+
+  // 內部元素
+  &__cover {
+    width: 100%;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  &__body {
+    flex: 1;
+    padding: @space-md;
+  }
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: @space-sm;
+  }
+
+  &__header-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__title {
+    .font-hylia();
+    font-size: @font-size-lg;
+    font-weight: 700;
+    color: @zelda-text;
+    line-height: @line-height-tight;
+    margin: 0;
+  }
+
+  &__subtitle {
+    font-size: @font-size-sm;
+    color: @zelda-text-secondary;
+    margin-top: @space-xs;
+  }
+
+  &__extra {
+    margin-left: @space-md;
+    flex-shrink: 0;
+  }
+
+  &__content {
+    color: @zelda-text;
+    font-size: @font-size-md;
+    line-height: @line-height-normal;
+  }
+
+  &__footer {
+    padding: @space-sm @space-md;
+    border-top: 1px solid @zelda-border;
+    background: @zelda-bg;
+  }
+}

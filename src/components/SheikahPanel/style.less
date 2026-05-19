@@ -1,0 +1,192 @@
+@import '../../styles/variables.less';
+@import '../../styles/mixins.less';
+
+// ============================================
+// SheikahPanel 樣式
+// ============================================
+
+.zelda-sheikah-panel {
+  .sheikah-panel();
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+
+  // 裝飾模式
+  &--decorated {
+    padding: @space-lg + @space-sm;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: @space-sm;
+      border: 1px solid rgba(0, 200, 184, 0.3);
+      border-radius: @radius-md;
+      pointer-events: none;
+    }
+  }
+
+  // 發光模式
+  &--glowing {
+    animation: sheikahGlow 3s ease-in-out infinite;
+  }
+
+  // 角落裝飾
+  &__corner {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-color: @zelda-primary;
+    border-style: solid;
+    border-width: 0;
+    z-index: 1;
+
+    &--tl {
+      top: @space-sm;
+      left: @space-sm;
+      border-top-width: 3px;
+      border-left-width: 3px;
+      border-top-left-radius: @radius-sm;
+    }
+
+    &--tr {
+      top: @space-sm;
+      right: @space-sm;
+      border-top-width: 3px;
+      border-right-width: 3px;
+      border-top-right-radius: @radius-sm;
+    }
+
+    &--bl {
+      bottom: @space-sm;
+      left: @space-sm;
+      border-bottom-width: 3px;
+      border-left-width: 3px;
+      border-bottom-left-radius: @radius-sm;
+    }
+
+    &--br {
+      bottom: @space-sm;
+      right: @space-sm;
+      border-bottom-width: 3px;
+      border-right-width: 3px;
+      border-bottom-right-radius: @radius-sm;
+    }
+  }
+
+  // 標題欄
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: @space-md;
+    padding-bottom: @space-md;
+    border-bottom: 1px solid rgba(0, 200, 184, 0.3);
+    position: relative;
+    z-index: 1;
+  }
+
+  &__header-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__title {
+    .font-hylia();
+    font-size: @font-size-xl;
+    font-weight: 700;
+    color: @zelda-primary-light;
+    line-height: @line-height-tight;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  &__subtitle {
+    font-size: @font-size-sm;
+    color: @zelda-primary;
+    margin-top: @space-xs;
+  }
+
+  &__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    background: transparent;
+    border: 1px solid rgba(0, 200, 184, 0.5);
+    border-radius: @radius-sm;
+    color: @zelda-primary;
+    cursor: pointer;
+    transition: @transition-fast;
+    flex-shrink: 0;
+    margin-left: @space-md;
+
+    &:hover {
+      background: @zelda-primary;
+      color: @zelda-sheikah-bg;
+    }
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  // 內容
+  &__content {
+    flex: 1;
+    position: relative;
+    z-index: 1;
+    color: @zelda-white;
+    font-size: @font-size-md;
+    line-height: @line-height-normal;
+  }
+
+  // 底部
+  &__footer {
+    margin-top: @space-md;
+    padding-top: @space-md;
+    border-top: 1px solid rgba(0, 200, 184, 0.3);
+    position: relative;
+    z-index: 1;
+  }
+
+  // 掃描線效果
+  &__scanline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      @zelda-primary 50%,
+      transparent 100%
+    );
+    opacity: 0.5;
+    animation: scanline 4s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+@keyframes sheikahGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(0, 200, 184, 0.3), 0 0 30px rgba(0, 200, 184, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 200, 184, 0.5), 0 0 40px rgba(0, 200, 184, 0.2);
+  }
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}

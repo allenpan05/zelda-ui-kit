@@ -1,0 +1,140 @@
+@import '../../styles/variables.less';
+@import '../../styles/mixins.less';
+
+.zelda-toast {
+  display: flex;
+  align-items: flex-start;
+  gap: @space-md;
+  padding: @space-md @space-lg;
+  border-radius: @radius-lg;
+  min-width: 320px;
+  max-width: 480px;
+  box-shadow: @shadow-xl;
+  position: relative;
+  overflow: hidden;
+  animation: toastSlideIn 0.3s ease-out;
+
+  // Sheikah 科技感背景
+  background: @zelda-sheikah-bg;
+  border: 1px solid rgba(0, 200, 184, 0.4);
+  color: @zelda-white;
+
+  // 頂部發光條
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, @zelda-primary, transparent);
+  }
+
+  &--closing {
+    animation: toastSlideOut 0.3s ease-in forwards;
+  }
+
+  // 類型顏色
+  &--item {
+    &::before { background: linear-gradient(90deg, transparent, @zelda-rupee-green, transparent); }
+    .zelda-toast__icon { color: @zelda-rupee-green; }
+  }
+
+  &--quest {
+    &::before { background: linear-gradient(90deg, transparent, @zelda-accent, transparent); }
+    .zelda-toast__icon { color: @zelda-accent; }
+  }
+
+  &--success {
+    &::before { background: linear-gradient(90deg, transparent, @zelda-success, transparent); }
+    .zelda-toast__icon { color: @zelda-success; }
+  }
+
+  &--warning {
+    &::before { background: linear-gradient(90deg, transparent, @zelda-warning, transparent); }
+    .zelda-toast__icon { color: @zelda-warning; }
+  }
+
+  &--info {
+    .zelda-toast__icon { color: @zelda-primary; }
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    color: @zelda-primary;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &__body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__title {
+    .font-hylia();
+    font-size: @font-size-md;
+    font-weight: 700;
+    color: @zelda-primary-light;
+    line-height: @line-height-tight;
+    letter-spacing: 0.5px;
+  }
+
+  &__desc {
+    font-size: @font-size-sm;
+    color: @zelda-text-light;
+    margin-top: @space-xs;
+    line-height: @line-height-normal;
+  }
+
+  &__close {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    color: @zelda-text-light;
+    cursor: pointer;
+    border-radius: @radius-sm;
+    transition: @transition-fast;
+
+    &:hover {
+      color: @zelda-white;
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+@keyframes toastSlideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes toastSlideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}

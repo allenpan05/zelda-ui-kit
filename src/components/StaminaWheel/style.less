@@ -1,0 +1,70 @@
+@import '../../styles/variables.less';
+@import '../../styles/mixins.less';
+
+.zelda-stamina {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &__svg {
+    display: block;
+    transform: scaleX(-1);
+  }
+
+  &__bg {
+    stroke: rgba(0, 200, 184, 0.15);
+  }
+
+  &__fill {
+    stroke: @zelda-stamina;
+    transition: stroke-dashoffset 0.4s ease;
+    filter: drop-shadow(0 0 4px rgba(0, 200, 184, 0.5));
+  }
+
+  &__value {
+    position: absolute;
+    .font-hylia();
+    font-weight: 700;
+    color: @zelda-primary-light;
+    line-height: 1;
+  }
+
+  // 尺寸
+  &--sm {
+    .zelda-stamina__svg { width: 32px; height: 32px; }
+    .zelda-stamina__value { font-size: @font-size-xs; }
+  }
+
+  &--md {
+    .zelda-stamina__svg { width: 48px; height: 48px; }
+    .zelda-stamina__value { font-size: @font-size-sm; }
+  }
+
+  &--lg {
+    .zelda-stamina__svg { width: 72px; height: 72px; }
+    .zelda-stamina__value { font-size: @font-size-lg; }
+  }
+
+  // 低耐力警告
+  &--low {
+    .zelda-stamina__fill {
+      stroke: @zelda-warning;
+      filter: drop-shadow(0 0 6px rgba(255, 165, 2, 0.6));
+      animation: staminaPulse 0.8s ease-in-out infinite;
+    }
+  }
+
+  // 空耐力
+  &--empty {
+    .zelda-stamina__fill {
+      stroke: @zelda-danger;
+      filter: none;
+    }
+  }
+}
+
+@keyframes staminaPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}

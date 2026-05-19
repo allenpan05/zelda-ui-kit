@@ -1,0 +1,69 @@
+.tag {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--zelda-spacing-xs);
+    padding: 2px var(--zelda-spacing-sm);
+    font-size: var(--zelda-font-size-xs);
+    font-weight: 600;
+    border-radius: var(--zelda-border-radius-sm);
+    border: 1px solid;
+    line-height: 1.4;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.tag-default {
+    background: var(--zelda-bg-color-tertiary);
+    border-color: var(--zelda-border-color);
+    color: var(--zelda-text-color-secondary);
+}
+
+.tag-gold {
+    background: rgba(212, 168, 67, 0.12);
+    border-color: rgba(212, 168, 67, 0.35);
+    color: var(--zelda-primary-color);
+}
+
+.tag-sheikah {
+    background: rgba(0, 200, 255, 0.1);
+    border-color: rgba(0, 200, 255, 0.3);
+    color: var(--zelda-sheikah-color);
+}
+
+.tag-success {
+    background: rgba(76, 175, 80, 0.1);
+    border-color: rgba(76, 175, 80, 0.3);
+    color: var(--zelda-success-color);
+}
+
+.tag-warning {
+    background: rgba(255, 179, 0, 0.1);
+    border-color: rgba(255, 179, 0, 0.3);
+    color: var(--zelda-warning-color);
+}
+
+.tag-error {
+    background: rgba(229, 57, 53, 0.1);
+    border-color: rgba(229, 57, 53, 0.3);
+    color: var(--zelda-error-color);
+}
+
+.close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    background: transparent;
+    border: none;
+    color: inherit;
+    opacity: 0.6;
+    cursor: pointer;
+    font-size: 10px;
+    padding: 0;
+
+    &:hover {
+        opacity: 1;
+    }
+}

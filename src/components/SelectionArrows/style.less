@@ -1,0 +1,101 @@
+@import '../../styles/variables.less';
+@import '../../styles/mixins.less';
+
+@arrow-color: var(--arrow-color, @zelda-primary);
+@arrow-size: 8px;
+
+.zelda-arrows {
+  position: absolute;
+  inset: -4px;
+  pointer-events: none;
+  z-index: 10;
+
+  &__arrow {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &--top {
+      top: -@arrow-size - 2px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &--bottom {
+      bottom: -@arrow-size - 2px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &--left {
+      left: -@arrow-size - 2px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &--right {
+      right: -@arrow-size - 2px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  &__triangle {
+    width: 0;
+    height: 0;
+
+    .zelda-arrows__arrow--top & {
+      border-left: @arrow-size solid transparent;
+      border-right: @arrow-size solid transparent;
+      border-bottom: @arrow-size solid @arrow-color;
+      animation: arrowBounceTop 1.2s ease-in-out infinite;
+    }
+
+    .zelda-arrows__arrow--bottom & {
+      border-left: @arrow-size solid transparent;
+      border-right: @arrow-size solid transparent;
+      border-top: @arrow-size solid @arrow-color;
+      animation: arrowBounceBottom 1.2s ease-in-out infinite;
+    }
+
+    .zelda-arrows__arrow--left & {
+      border-top: @arrow-size solid transparent;
+      border-bottom: @arrow-size solid transparent;
+      border-right: @arrow-size solid @arrow-color;
+      animation: arrowBounceLeft 1.2s ease-in-out infinite;
+    }
+
+    .zelda-arrows__arrow--right & {
+      border-top: @arrow-size solid transparent;
+      border-bottom: @arrow-size solid transparent;
+      border-left: @arrow-size solid @arrow-color;
+      animation: arrowBounceRight 1.2s ease-in-out infinite;
+    }
+  }
+
+  // 速度變體
+  &--slow &__triangle { animation-duration: 1.8s !important; }
+  &--normal &__triangle { animation-duration: 1.2s !important; }
+  &--fast &__triangle { animation-duration: 0.6s !important; }
+}
+
+@keyframes arrowBounceTop {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes arrowBounceBottom {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+}
+
+@keyframes arrowBounceLeft {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-4px); }
+}
+
+@keyframes arrowBounceRight {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(4px); }
+}

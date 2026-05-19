@@ -1,0 +1,232 @@
+// ============================================
+// Zelda UI Kit - Mixins
+// ============================================
+
+@import './variables.less';
+
+// ============================================
+// 字體 Mixins
+// ============================================
+
+.font-hylia() {
+  font-family: 'Hylia Serif', 'Georgia', 'Times New Roman', serif;
+}
+
+.font-body() {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.font-hylian-symbol() {
+  font-family: 'Hylian Symbols', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+}
+
+// ============================================
+// 按鈕 Mixins
+// ============================================
+
+.button-base() {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: @space-sm;
+  padding: @space-sm @space-md;
+  font-size: @font-size-md;
+  font-weight: 500;
+  border-radius: @radius-md;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: @transition-normal;
+  outline: none;
+  .font-body();
+
+  &:focus-visible {
+    box-shadow: @glow-primary;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.button-size-sm() {
+  padding: @space-xs @space-sm;
+  font-size: @font-size-sm;
+}
+
+.button-size-md() {
+  padding: @space-sm @space-md;
+  font-size: @font-size-md;
+}
+
+.button-size-lg() {
+  padding: @space-md @space-lg;
+  font-size: @font-size-lg;
+}
+
+// ============================================
+// 卡片 Mixins
+// ============================================
+
+.card-base() {
+  background: @zelda-white;
+  border: 2px solid @zelda-brown;
+  border-radius: @radius-lg;
+  padding: @space-md;
+  transition: @transition-normal;
+}
+
+.card-elevated() {
+  .card-base();
+  box-shadow: @shadow-md;
+
+  &:hover {
+    box-shadow: @shadow-lg;
+    transform: translateY(-2px);
+  }
+}
+
+// ============================================
+// Sheikah 面板 Mixins
+// ============================================
+
+.sheikah-panel() {
+  background: @zelda-sheikah-bg;
+  border: 2px solid @zelda-sheikah-border;
+  border-radius: @radius-lg;
+  padding: @space-lg;
+  color: @zelda-white;
+  box-shadow: @glow-sheikah;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+      135deg,
+      rgba(0, 200, 184, 0.1) 0%,
+      transparent 50%,
+      rgba(0, 200, 184, 0.05) 100%
+    );
+    pointer-events: none;
+  }
+}
+
+// ============================================
+// 發光效果 Mixins
+// ============================================
+
+.glow-effect(@color: @zelda-primary) {
+  box-shadow: 0 0 10px @color, 0 0 20px fade(@color, 30%);
+}
+
+.glow-border(@color: @zelda-primary) {
+  border-color: @color;
+  box-shadow: 0 0 8px fade(@color, 40%), inset 0 0 8px fade(@color, 20%);
+}
+
+// ============================================
+// 遊戲元素 Mixins
+// ============================================
+
+// 心形
+.heart-shape(@size: 24px) {
+  width: @size;
+  height: @size;
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: (@size / 2);
+    height: (@size * 0.8);
+    border-radius: (@size / 2) (@size / 2) 0 0;
+    background: @zelda-heart;
+  }
+
+  &::before {
+    left: (@size / 2);
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+  }
+
+  &::after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+  }
+}
+
+// 六邊形寶石
+.rupee-shape(@size: 24px, @color: @zelda-rupee-green) {
+  width: @size;
+  height: (@size * 1.5);
+  background: @color;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  position: relative;
+}
+
+// ============================================
+// 打字機效果
+// ============================================
+
+.typewriter-cursor() {
+  &::after {
+    content: '|';
+    animation: blink 0.7s step-end infinite;
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+// ============================================
+// 脈動動畫
+// ============================================
+
+.pulse-animation() {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+// ============================================
+// 發光動畫
+// ============================================
+
+.glow-animation(@color: @zelda-primary) {
+  animation: glow 2s ease-in-out infinite alternate;
+  --glow-color: @color;
+  --glow-fade-from: fade(@color, 30%);
+  --glow-fade-to: fade(@color, 50%);
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 5px var(--glow-color, @zelda-primary), 0 0 10px var(--glow-fade-from, rgba(0, 200, 184, 0.3));
+  }
+  to {
+    box-shadow: 0 0 10px var(--glow-color, @zelda-primary), 0 0 20px var(--glow-fade-to, rgba(0, 200, 184, 0.5));
+  }
+}
+
+// ============================================
+// 響應式 Mixins
+// ============================================
+
+.respond-to(@breakpoint) {
+  @media (max-width: @breakpoint) {
+    @content();
+  }
+}

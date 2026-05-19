@@ -1,0 +1,336 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]: ◆
+      - heading "Zelda UI Kit" [level=1] [ref=e7]
+      - paragraph [ref=e8]: Sheikah-inspired React Component Library
+      - generic [ref=e9]:
+        - button "Get Started" [ref=e10] [cursor=pointer]:
+          - generic [ref=e11]: Get Started
+        - button "GitHub" [ref=e12] [cursor=pointer]:
+          - generic [ref=e13]: GitHub
+  - main [ref=e14]:
+    - navigation [ref=e15]:
+      - generic [ref=e16]:
+        - heading "Components" [level=3] [ref=e17]
+        - list [ref=e18]:
+          - listitem [ref=e19]:
+            - link "Buttons" [ref=e20] [cursor=pointer]:
+              - /url: "#buttons"
+          - listitem [ref=e21]:
+            - link "Cards" [ref=e22] [cursor=pointer]:
+              - /url: "#cards"
+          - listitem [ref=e23]:
+            - link "Badges" [ref=e24] [cursor=pointer]:
+              - /url: "#badges"
+          - listitem [ref=e25]:
+            - link "Heart" [ref=e26] [cursor=pointer]:
+              - /url: "#heart"
+          - listitem [ref=e27]:
+            - link "Rupee" [ref=e28] [cursor=pointer]:
+              - /url: "#rupee"
+          - listitem [ref=e29]:
+            - link "DialogueBox" [ref=e30] [cursor=pointer]:
+              - /url: "#dialogue"
+          - listitem [ref=e31]:
+            - link "InventoryGrid" [ref=e32] [cursor=pointer]:
+              - /url: "#inventory"
+          - listitem [ref=e33]:
+            - link "MapMarker" [ref=e34] [cursor=pointer]:
+              - /url: "#map"
+          - listitem [ref=e35]:
+            - link "SheikahPanel" [ref=e36] [cursor=pointer]:
+              - /url: "#sheikah"
+    - generic [ref=e37]:
+      - generic [ref=e38]:
+        - generic [ref=e39]:
+          - heading "Buttons" [level=2] [ref=e40]
+          - paragraph [ref=e41]: 按鈕組件，支持多種類型、尺寸和狀態
+        - generic [ref=e42]:
+          - heading "類型" [level=3] [ref=e43]
+          - generic [ref=e44]:
+            - button "Primary" [ref=e45] [cursor=pointer]:
+              - generic [ref=e46]: Primary
+            - button "Secondary" [ref=e47] [cursor=pointer]:
+              - generic [ref=e48]: Secondary
+            - button "Outline" [ref=e49] [cursor=pointer]:
+              - generic [ref=e50]: Outline
+            - button "Ghost" [ref=e51] [cursor=pointer]:
+              - generic [ref=e52]: Ghost
+            - button "Danger" [ref=e53] [cursor=pointer]:
+              - generic [ref=e54]: Danger
+        - generic [ref=e55]:
+          - heading "尺寸" [level=3] [ref=e56]
+          - generic [ref=e57]:
+            - button "Small" [ref=e58] [cursor=pointer]:
+              - generic [ref=e59]: Small
+            - button "Medium" [ref=e60] [cursor=pointer]:
+              - generic [ref=e61]: Medium
+            - button "Large" [ref=e62] [cursor=pointer]:
+              - generic [ref=e63]: Large
+        - generic [ref=e64]:
+          - heading "狀態" [level=3] [ref=e65]
+          - generic [ref=e66]:
+            - button "Loading" [disabled] [ref=e67]:
+              - img [ref=e69]
+              - generic [ref=e71]: Loading
+            - button "Disabled" [disabled] [ref=e72]:
+              - generic [ref=e73]: Disabled
+            - button "⚔️ With Icon" [ref=e74] [cursor=pointer]:
+              - generic [ref=e76]: ⚔️
+              - generic [ref=e77]: With Icon
+            - button "🔍 Search" [ref=e78] [cursor=pointer]:
+              - generic [ref=e80]: 🔍
+              - generic [ref=e81]: Search
+      - generic [ref=e82]:
+        - generic [ref=e83]:
+          - heading "Cards" [level=2] [ref=e84]
+          - paragraph [ref=e85]: 卡片容器，支持多種變體和懸停效果
+        - generic [ref=e86]:
+          - heading "變體" [level=3] [ref=e87]
+          - generic [ref=e88]:
+            - generic [ref=e90] [cursor=pointer]:
+              - generic [ref=e93]: Default Card
+              - paragraph [ref=e95]: 這是默認樣式的卡片，帶有基本的邊框和陰影。
+            - generic [ref=e97] [cursor=pointer]:
+              - generic [ref=e100]: Elevated Card
+              - paragraph [ref=e102]: 這是浮起樣式的卡片，懸停時會有更明顯的陰影效果。
+            - generic [ref=e104] [cursor=pointer]:
+              - generic [ref=e107]: Outlined Card
+              - paragraph [ref=e109]: 這是輪廓樣式的卡片，只有邊框沒有背景色。
+        - generic [ref=e110]:
+          - heading "Sheikah 風格" [level=3] [ref=e111]
+          - generic [ref=e112]:
+            - generic [ref=e114]:
+              - generic [ref=e115]:
+                - generic [ref=e117]: Shrine Quest
+                - generic [ref=e119]: Active
+              - paragraph [ref=e121]: Discover and complete the hidden shrine in the Dueling Peaks region.
+            - generic [ref=e123]:
+              - generic [ref=e124]:
+                - generic [ref=e126]: Divine Beast
+                - generic [ref=e128]: Completed
+              - paragraph [ref=e130]: Free Vah Ruta from Ganon's corruption in the Lanayru region.
+      - generic [ref=e131]:
+        - generic [ref=e132]:
+          - heading "Badges" [level=2] [ref=e133]
+          - paragraph [ref=e134]: 徽章組件，用于標記狀態或顯示計數
+        - generic [ref=e135]:
+          - heading "顏色變體" [level=3] [ref=e136]
+          - generic [ref=e137]:
+            - generic [ref=e138]: Default
+            - generic [ref=e139]: Primary
+            - generic [ref=e140]: Success
+            - generic [ref=e141]: Warning
+            - generic [ref=e142]: Danger
+            - generic [ref=e143]: Info
+        - generic [ref=e144]:
+          - heading "計數模式" [level=3] [ref=e145]
+          - generic [ref=e146]:
+            - generic [ref=e147]:
+              - button "Messages" [ref=e148] [cursor=pointer]:
+                - generic [ref=e149]: Messages
+              - generic [ref=e150]: "5"
+            - generic [ref=e151]:
+              - button "Items" [ref=e152] [cursor=pointer]:
+                - generic [ref=e153]: Items
+              - generic [ref=e154]: "99"
+            - generic [ref=e155]:
+              - button "Quests" [ref=e156] [cursor=pointer]:
+                - generic [ref=e157]: Quests
+              - generic [ref=e158]: 99+
+            - button "Notifications" [ref=e160] [cursor=pointer]:
+              - generic [ref=e161]: Notifications
+      - generic [ref=e163]:
+        - generic [ref=e164]:
+          - heading "Heart (生命值)" [level=2] [ref=e165]
+          - paragraph [ref=e166]: 心形生命值顯示，支持動態交互和動畫效果
+        - generic [ref=e167]:
+          - heading "交互式演示" [level=3] [ref=e168]
+          - generic [ref=e169]:
+            - generic [ref=e182]: 7/10
+            - generic [ref=e183]:
+              - button "⚔️ Damage" [ref=e184] [cursor=pointer]:
+                - generic [ref=e185]: ⚔️ Damage
+              - button "💚 Heal" [ref=e186] [cursor=pointer]:
+                - generic [ref=e187]: 💚 Heal
+              - button "Full Restore" [ref=e188] [cursor=pointer]:
+                - generic [ref=e189]: Full Restore
+        - generic [ref=e190]:
+          - heading "不同狀態" [level=3] [ref=e191]
+          - generic [ref=e192]:
+            - generic [ref=e211]: Full Health
+            - generic [ref=e230]: Partial
+            - generic [ref=e246]: Low Health
+            - generic [ref=e265]: Empty
+      - generic [ref=e266]:
+        - generic [ref=e267]:
+          - heading "Rupee (寶石計數器)" [level=2] [ref=e268]
+          - paragraph [ref=e269]: 寶石貨幣顯示，支持多種顏色和數字格式化
+        - generic [ref=e270]:
+          - heading "寶石顏色" [level=3] [ref=e271]
+          - generic [ref=e272]:
+            - generic [ref=e273]:
+              - generic [ref=e278]: "1"
+              - generic [ref=e279]: Green Rupee
+              - generic [ref=e280]: "1"
+            - generic [ref=e281]:
+              - generic [ref=e286]: "5"
+              - generic [ref=e287]: Blue Rupee
+              - generic [ref=e288]: "5"
+            - generic [ref=e289]:
+              - generic [ref=e294]: "20"
+              - generic [ref=e295]: Red Rupee
+              - generic [ref=e296]: "20"
+            - generic [ref=e297]:
+              - generic [ref=e302]: "50"
+              - generic [ref=e303]: Purple Rupee
+              - generic [ref=e304]: "50"
+            - generic [ref=e305]:
+              - generic [ref=e310]: "100"
+              - generic [ref=e311]: Gold Rupee
+              - generic [ref=e312]: "100"
+        - generic [ref=e313]:
+          - heading "數字格式化" [level=3] [ref=e314]
+          - generic [ref=e315]:
+            - generic [ref=e320]: 1,234
+            - generic [ref=e325]: 57k
+            - generic [ref=e330]: 10k
+      - generic [ref=e331]:
+        - generic [ref=e332]:
+          - heading "DialogueBox (對話框)" [level=2] [ref=e333]
+          - paragraph [ref=e334]: NPC 對話框，支持打字機效果和頭像顯示
+        - generic [ref=e335]:
+          - heading "交互式演示" [level=3] [ref=e336]
+          - generic [ref=e337]:
+            - button "👸 Zelda" [ref=e338] [cursor=pointer]:
+              - generic [ref=e339]: 👸 Zelda
+            - button "👴 Old Man" [ref=e340] [cursor=pointer]:
+              - generic [ref=e341]: 👴 Old Man
+            - button "👵 Impa" [ref=e342] [cursor=pointer]:
+              - generic [ref=e343]: 👵 Impa
+        - generic [ref=e344]:
+          - heading "靜態示例" [level=3] [ref=e345]
+          - generic [ref=e346]:
+            - generic [ref=e347]: 👴
+            - generic [ref=e348]:
+              - generic [ref=e349]: Old Man
+              - generic [ref=e350] [cursor=pointer]: Ah, you're awake. You've been asleep for quite some time... Welcome to the world of Hyrule!
+              - button "關閉" [ref=e352] [cursor=pointer]
+      - generic [ref=e353]:
+        - generic [ref=e354]:
+          - heading "InventoryGrid (物品欄)" [level=2] [ref=e355]
+          - paragraph [ref=e356]: 遊戲風格物品欄，支持選擇、耐久度顯示和新物品標記
+        - generic [ref=e357]:
+          - heading "物品欄" [level=3] [ref=e358]
+          - generic [ref=e360]:
+            - button "Master Sword" [ref=e361] [cursor=pointer]:
+              - generic [ref=e362]: 🗡️
+              - text: ★
+            - button "Hylian Shield" [ref=e365] [cursor=pointer]:
+              - generic [ref=e366]: 🛡️
+            - button "Bow of Light" [ref=e369] [cursor=pointer]:
+              - generic [ref=e370]: 🏹
+            - button "Apple" [ref=e373] [cursor=pointer]:
+              - generic [ref=e374]: 🍎
+              - generic [ref=e375]: "15"
+            - button "Meat" [ref=e376] [cursor=pointer]:
+              - generic [ref=e377]: 🍖
+              - generic [ref=e378]: "8"
+            - button "Diamond" [ref=e379] [cursor=pointer]:
+              - generic [ref=e380]: 💎
+              - generic [ref=e381]: "3"
+            - button "Ancient Core" [ref=e382] [cursor=pointer]:
+              - generic [ref=e383]: 🔮
+              - generic [ref=e384]: "5"
+            - button "Hearty Radish" [ref=e385] [cursor=pointer]:
+              - generic [ref=e386]: 🌿
+              - generic [ref=e387]: "12"
+            - button "Shock Arrow" [ref=e388] [cursor=pointer]:
+              - generic [ref=e389]: ⚡
+              - generic [ref=e390]: "20"
+            - button "Fire Arrow" [ref=e391] [cursor=pointer]:
+              - generic [ref=e392]: 🔥
+              - generic [ref=e393]: "10"
+            - button "Empty slot" [ref=e394]
+            - button "Empty slot" [ref=e396]
+            - button "Empty slot" [ref=e398]
+            - button "Empty slot" [ref=e400]
+            - button "Empty slot" [ref=e402]
+            - button "Empty slot" [ref=e404]
+            - button "Empty slot" [ref=e406]
+            - button "Empty slot" [ref=e408]
+            - button "Empty slot" [ref=e410]
+            - button "Empty slot" [ref=e412]
+      - generic [ref=e414]:
+        - generic [ref=e415]:
+          - heading "MapMarker (地圖標記)" [level=2] [ref=e416]
+          - paragraph [ref=e417]: 地圖標記組件，支持多種類型和狀態
+        - generic [ref=e418]:
+          - heading "標記類型" [level=3] [ref=e419]
+          - generic [ref=e420]:
+            - generic [ref=e421]:
+              - button "Sheikah Tower" [ref=e422] [cursor=pointer]:
+                - img [ref=e424]
+                - generic [ref=e426]: Sheikah Tower
+              - generic [ref=e427]: Tower
+            - generic [ref=e428]:
+              - button "Shrine" [ref=e429] [cursor=pointer]:
+                - img [ref=e431]
+                - generic [ref=e433]: Shrine
+              - generic [ref=e434]: Shrine
+            - generic [ref=e435]:
+              - button "Stable" [ref=e436] [cursor=pointer]:
+                - img [ref=e438]
+                - generic [ref=e440]: Stable
+              - generic [ref=e441]: Stable
+            - generic [ref=e442]:
+              - button "Village" [ref=e443] [cursor=pointer]:
+                - img [ref=e445]
+                - generic [ref=e447]: Village
+              - generic [ref=e448]: Village
+            - generic [ref=e449]:
+              - button "Custom" [ref=e450] [cursor=pointer]:
+                - img [ref=e452]
+                - generic [ref=e454]: Custom
+              - generic [ref=e455]: Custom
+        - generic [ref=e456]:
+          - heading "狀態" [level=3] [ref=e457]
+          - generic [ref=e458]:
+            - button "Discovered" [ref=e459] [cursor=pointer]:
+              - img [ref=e461]
+              - generic [ref=e463]: Discovered
+            - button "Undiscovered" [ref=e464] [cursor=pointer]:
+              - img [ref=e466]
+              - generic [ref=e468]: Undiscovered
+            - button "Activated" [ref=e469] [cursor=pointer]:
+              - img [ref=e471]
+              - generic [ref=e473]: Activated
+      - generic [ref=e474]:
+        - generic [ref=e475]:
+          - heading "SheikahPanel (希卡之石面板)" [level=2] [ref=e476]
+          - paragraph [ref=e477]: Sheikah 風格面板，帶有科技感邊框和掃描線效果
+        - generic [ref=e478]:
+          - heading "基本用法" [level=3] [ref=e479]
+          - generic [ref=e481]:
+            - generic [ref=e487]:
+              - generic [ref=e488]: Sheikah Slate
+              - generic [ref=e489]: Ancient Technology
+            - generic [ref=e490]:
+              - paragraph [ref=e491]: Welcome, hero. I am your Sheikah Slate, a multipurpose ancient artifact.
+              - paragraph [ref=e492]: "Functions include: Map, Camera, Album, and Rune abilities."
+        - generic [ref=e493]:
+          - heading "裝飾和發光效果" [level=3] [ref=e494]
+          - generic [ref=e496]:
+            - generic [ref=e501]:
+              - generic [ref=e503]: Terminal
+              - button [ref=e504] [cursor=pointer]:
+                - img [ref=e505]
+            - generic [ref=e507]:
+              - paragraph [ref=e508]: Accessing Hyrule Castle network...
+              - paragraph [ref=e509]: "Calamity Ganon containment level: 87%"
+  - contentinfo [ref=e510]:
+    - generic [ref=e511]:
+      - paragraph [ref=e512]: ◆ Zelda UI Kit
+      - paragraph [ref=e513]: "Inspired by The Legend of Zelda: Breath of the Wild"
+      - paragraph [ref=e514]: This is a fan project for educational purposes only. Not affiliated with Nintendo.

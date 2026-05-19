@@ -1,0 +1,91 @@
+@import '../../styles/variables.less';
+@import '../../styles/mixins.less';
+
+// ============================================
+// Badge 樣式
+// ============================================
+
+.zelda-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: @space-xs;
+  position: relative;
+
+  &__count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    .font-hylia();
+    font-size: @font-size-xs;
+    font-weight: 700;
+    line-height: 1;
+    padding: 2px 6px;
+    border-radius: @radius-full;
+    white-space: nowrap;
+  }
+
+  // 尺寸
+  &--sm &__count {
+    min-width: 16px;
+    height: 16px;
+    padding: 0 4px;
+    font-size: 10px;
+  }
+
+  &--md &__count {
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    font-size: @font-size-xs;
+  }
+
+  // 變體
+  &--default &__count {
+    background: @zelda-text-secondary;
+    color: @zelda-white;
+  }
+
+  &--primary &__count {
+    background: @zelda-primary;
+    color: @zelda-white;
+  }
+
+  &--success &__count {
+    background: @zelda-success;
+    color: @zelda-white;
+  }
+
+  &--warning &__count {
+    background: @zelda-warning;
+    color: @zelda-white;
+  }
+
+  &--danger &__count {
+    background: @zelda-danger;
+    color: @zelda-white;
+  }
+
+  &--info &__count {
+    background: @zelda-info;
+    color: @zelda-white;
+  }
+
+  // 圓點模式
+  &--dot &__count {
+    width: 8px;
+    height: 8px;
+    min-width: 8px;
+    padding: 0;
+    border-radius: 50%;
+  }
+
+  // 有子元素時定位
+  &--has-children &__count {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    transform: translate(50%, -50%);
+    z-index: 1;
+    border: 2px solid @zelda-white;
+  }
+}

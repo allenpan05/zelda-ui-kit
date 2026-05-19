@@ -1,0 +1,111 @@
+.wrapper {
+    position: relative;
+    display: inline-flex;
+    width: 100%;
+}
+
+.wrapper-small .trigger { height: var(--zelda-height-sm); font-size: var(--zelda-font-size-xs); }
+.wrapper-middle .trigger { height: var(--zelda-height-base); font-size: var(--zelda-font-size-sm); }
+.wrapper-large .trigger { height: var(--zelda-height-lg); font-size: var(--zelda-font-size-base); }
+
+.wrapper-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    .trigger { cursor: not-allowed; }
+}
+
+.trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 var(--zelda-spacing-lg);
+    background: var(--zelda-bg-color-secondary);
+    border: var(--zelda-border-width) solid var(--zelda-border-color);
+    border-radius: var(--zelda-border-radius-base);
+    cursor: pointer;
+    transition: all var(--zelda-motion-duration-base) var(--zelda-motion-ease);
+    color: var(--zelda-text-color);
+
+    &:hover {
+        border-color: var(--zelda-border-color-hover);
+    }
+}
+
+.wrapper-open .trigger {
+    border-color: var(--zelda-sheikah-color);
+    box-shadow: var(--zelda-glow-sm);
+}
+
+.value {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.placeholder {
+    color: var(--zelda-text-color-disabled);
+}
+
+.arrow {
+    display: inline-flex;
+    color: var(--zelda-text-color-secondary);
+    transition: transform var(--zelda-motion-duration-fast) var(--zelda-motion-ease);
+}
+
+.arrow-up {
+    transform: rotate(180deg);
+}
+
+.dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: var(--zelda-bg-color-tertiary);
+    border: var(--zelda-border-width) solid var(--zelda-border-color);
+    border-radius: var(--zelda-border-radius-base);
+    box-shadow: var(--zelda-shadow-base);
+    padding: var(--zelda-spacing-xs) 0;
+    animation: zelda-dropdown-open var(--zelda-motion-duration-fast) var(--zelda-motion-ease);
+}
+
+.option {
+    padding: var(--zelda-spacing-sm) var(--zelda-spacing-lg);
+    cursor: pointer;
+    color: var(--zelda-text-color);
+    transition: all var(--zelda-motion-duration-fast) var(--zelda-motion-ease);
+
+    &:hover {
+        background: var(--zelda-sheikah-color-bg);
+        color: var(--zelda-sheikah-color);
+    }
+}
+
+.option-active {
+    color: var(--zelda-sheikah-color);
+    background: var(--zelda-sheikah-color-bg);
+}
+
+.option-disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+
+    &:hover {
+        background: transparent;
+        color: var(--zelda-text-color);
+    }
+}
+
+@keyframes zelda-dropdown-open {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
