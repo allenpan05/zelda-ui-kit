@@ -1,6 +1,6 @@
 {
     "name": "zelda-ui-kit",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "description": "A Zelda-inspired React UI component library with Sheikah & Hyrule aesthetics",
     "type": "module",
     "main": "dist/cjs/index.cjs",
