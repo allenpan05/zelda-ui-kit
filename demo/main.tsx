@@ -89,8 +89,12 @@ const App: React.FC = () => {
           <h1 className="demo-title">Zelda UI Kit</h1>
           <p className="demo-subtitle">Sheikah-inspired React Component Library</p>
           <div className="demo-header-actions">
-            <Button type="primary" size="sm">Get Started</Button>
-            <Button type="outline" size="sm">GitHub</Button>
+            <a href="https://github.com/allenpan05/zelda-ui-kit#quick-start" target="_blank" rel="noopener noreferrer">
+              <Button type="primary" size="sm">Get Started</Button>
+            </a>
+            <a href="https://github.com/allenpan05/zelda-ui-kit" target="_blank" rel="noopener noreferrer">
+              <Button type="outline" size="sm">GitHub</Button>
+            </a>
           </div>
         </div>
       </header>
