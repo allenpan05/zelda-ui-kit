@@ -4,14 +4,53 @@ import './styles/index.less';
 // ============================================
 // 基础 UI 组件
 // ============================================
+export { Alert } from './components/Alert';
+export type { AlertProps, AlertType } from './components/Alert';
+
+export { Badge } from './components/Badge';
+export type { BadgeProps, BadgeVariant, BadgeSize } from './components/Badge';
+
 export { Button } from './components/Button';
 export type { ButtonProps, ButtonType, ButtonSize } from './components/Button';
 
 export { Card } from './components/Card';
 export type { CardProps, CardVariant, CardPadding } from './components/Card';
 
-export { Badge } from './components/Badge';
-export type { BadgeProps, BadgeVariant, BadgeSize } from './components/Badge';
+export { Checkbox } from './components/Checkbox';
+export type { CheckboxProps } from './components/Checkbox';
+
+export { Collapse } from './components/Collapse';
+export type { CollapseProps, CollapseItem } from './components/Collapse';
+
+export { Divider } from './components/Divider';
+export type { DividerProps } from './components/Divider';
+
+export { Input } from './components/Input';
+export type { InputProps, InputSize } from './components/Input';
+
+export { Loading } from './components/Loading';
+export type { LoadingProps } from './components/Loading';
+
+export { Modal } from './components/Modal';
+export type { ModalProps } from './components/Modal';
+
+export { Progress } from './components/Progress';
+export type { ProgressProps } from './components/Progress';
+
+export { Select } from './components/Select';
+export type { SelectProps, SelectOption } from './components/Select';
+
+export { Switch } from './components/Switch';
+export type { SwitchProps } from './components/Switch';
+
+export { Tabs } from './components/Tabs';
+export type { TabsProps, TabItem } from './components/Tabs';
+
+export { Tag } from './components/Tag';
+export type { TagProps, TagColor } from './components/Tag';
+
+export { Tooltip } from './components/Tooltip';
+export type { TooltipProps, TooltipPlacement } from './components/Tooltip';
 
 // ============================================
 // Zelda 遊戲組件

@@ -10,6 +10,8 @@ A Sheikah-inspired React component library built with TypeScript and Less. Bring
 
 **[Live Demo](https://allenpan05.github.io/zelda-ui-kit/)**
 
+> **Using AI?** See [LLM.md](./LLM.md) for a machine-readable component reference.
+
 ---
 
 ## Install
