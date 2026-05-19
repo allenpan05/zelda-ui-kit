@@ -2,6 +2,8 @@
 
 A Sheikah-inspired React component library built with TypeScript and Less. Bring the look and feel of *The Legend of Zelda: Breath of the Wild* to your web apps.
 
+**27 components** — 16 basic UI + 11 Zelda game elements. Zero runtime config, just import and use.
+
 > This is a fan project for educational purposes. Not affiliated with Nintendo.
 
 ---
@@ -37,6 +39,88 @@ function App() {
   );
 }
 ```
+
+---
+
+## Quick API
+
+### Heart
+
+```tsx
+<Heart value={7} max={10} size="lg" animated showValue />
+```
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | `number` | — | Current health (supports half-hearts: `7.5`) |
+| `max` | `number` | `10` | Max hearts |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Display size |
+| `animated` | `boolean` | `false` | Low-health pulse animation |
+| `showValue` | `boolean` | `false` | Show `7/10` text |
+
+### Rupee
+
+```tsx
+<Rupee value={1234} color="green" size="lg" animated />
+```
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | `number` | — | Currency amount |
+| `color` | `'green' \| 'blue' \| 'red' \| 'purple' \| 'gold'` | `'green'` | Gem color |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Display size |
+| `animated` | `boolean` | `false` | Shine animation |
+
+### SheikahPanel
+
+```tsx
+<SheikahPanel title="Terminal" subtitle="Ancient Tech" decorated glowing closable onClose={close}>
+  Content
+</SheikahPanel>
+```
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | `ReactNode` | — | Panel title |
+| `subtitle` | `ReactNode` | — | Subtitle |
+| `decorated` | `boolean` | `true` | Corner decorations |
+| `glowing` | `boolean` | `false` | Glow animation |
+| `closable` | `boolean` | `false` | Show close button |
+| `onClose` | `() => void` | — | Close callback |
+
+### InventoryGrid
+
+```tsx
+const items = [
+  { id: '1', icon: '🗡️', name: 'Master Sword', durability: 100 },
+  { id: '2', icon: '🛡️', name: 'Shield', durability: 85 },
+];
+
+<InventoryGrid items={items} columns={5} totalSlots={20} onSelect={setSelected} />
+```
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `items` | `InventoryItem[]` | — | `{ id, icon, name, count?, isNew?, durability?, type? }` |
+| `columns` | `number` | `5` | Grid columns |
+| `totalSlots` | `number` | `20` | Total grid slots |
+| `selectedId` | `string \| null` | — | Selected item ID |
+| `onSelect` | `(item) => void` | — | Selection callback |
+
+### Button
+
+```tsx
+<Button type="primary" size="md" icon={<Icon />}>Click</Button>
+```
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `type` | `'primary' \| 'secondary' \| 'outline' \| 'ghost' \| 'danger'` | `'primary'` | Style variant |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Button size |
+| `loading` | `boolean` | `false` | Loading spinner |
+| `icon` | `ReactNode` | — | Leading icon |
+
+> Full API for all 27 components: see [LLM.md](./LLM.md)
 
 ---
 
