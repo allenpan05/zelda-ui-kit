@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styles from './divider.module.less';
 
 export interface DividerProps {
@@ -8,27 +8,24 @@ export interface DividerProps {
     children?: React.ReactNode;
 }
 
-export const Divider: React.FC<DividerProps> = ({
-    orientation = 'center',
-    dashed = false,
-    className,
-    children,
-}) => {
-    const classNames = [
-        styles.divider,
-        children && styles['divider-with-text'],
-        children && styles[`divider-${orientation}`],
-        dashed && styles['divider-dashed'],
-        className,
-    ]
-        .filter(Boolean)
-        .join(' ');
+export const Divider = forwardRef<HTMLDivElement, DividerProps>(
+    ({ orientation = 'center', dashed = false, className, children }, ref) => {
+        const classNames = [
+            styles.divider,
+            children && styles['divider-with-text'],
+            children && styles[`divider-${orientation}`],
+            dashed && styles['divider-dashed'],
+            className,
+        ]
+            .filter(Boolean)
+            .join(' ');
 
-    return (
-        <div className={classNames} role="separator">
-            {children && <span className={styles.text}>{children}</span>}
-        </div>
-    );
-};
+        return (
+            <div ref={ref} className={classNames} role="separator">
+                {children && <span className={styles.text}>{children}</span>}
+            </div>
+        );
+    },
+);
 
 Divider.displayName = 'Divider';

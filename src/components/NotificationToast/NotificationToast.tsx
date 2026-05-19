@@ -1,25 +1,17 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef, forwardRef } from 'react';
 import classNames from 'classnames';
 import './style.less';
 
 export type NotificationToastType = 'item' | 'quest' | 'info' | 'success' | 'warning';
 
 export interface NotificationToastProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
-  /** 通知類型 */
   type?: NotificationToastType;
-  /** 標題 */
   title: string;
-  /** 描述 */
   description?: string;
-  /** 圖標 */
   icon?: React.ReactNode;
-  /** 是否可見 */
   visible?: boolean;
-  /** 自動關閉時間 (ms)，0 = 不自動關閉 */
   duration?: number;
-  /** 關閉回調 */
   onClose?: () => void;
-  /** 關閉動畫完成回調 */
   afterClose?: () => void;
 }
 
@@ -51,7 +43,7 @@ const defaultIcons: Record<NotificationToastType, React.ReactNode> = {
   ),
 };
 
-const NotificationToast: React.FC<NotificationToastProps> = ({
+export const NotificationToast = forwardRef<HTMLDivElement, NotificationToastProps>(({
   type = 'info',
   title,
   description,
@@ -62,7 +54,7 @@ const NotificationToast: React.FC<NotificationToastProps> = ({
   afterClose,
   className,
   ...rest
-}) => {
+}, ref) => {
   const [internalVisible, setInternalVisible] = useState(true);
   const [closing, setClosing] = useState(false);
   const closeTimerRef = useRef<ReturnType<typeof setTimeout>>();
@@ -79,14 +71,12 @@ const NotificationToast: React.FC<NotificationToastProps> = ({
     }, 300);
   }, [onClose, afterClose]);
 
-  // 清理計時器
   useEffect(() => {
     return () => {
       if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
     };
   }, []);
 
-  // 自動關閉
   useEffect(() => {
     if (!isVisible || duration <= 0) return;
     const timer = setTimeout(handleClose, duration);
@@ -105,7 +95,7 @@ const NotificationToast: React.FC<NotificationToastProps> = ({
   );
 
   return (
-    <div className={classes} role="alert" {...rest}>
+    <div ref={ref} className={classes} role="alert" {...rest}>
       <div className="zelda-toast__icon">
         {icon || defaultIcons[type]}
       </div>
@@ -122,8 +112,7 @@ const NotificationToast: React.FC<NotificationToastProps> = ({
       </button>
     </div>
   );
-};
+});
 
 NotificationToast.displayName = 'NotificationToast';
 
-export default NotificationToast;

@@ -90,3 +90,6 @@ export type { NotificationToastProps, NotificationToastType } from './components
 
 export { SheikahText } from './components/SheikahText';
 export type { SheikahTextProps, SheikahLetter } from './components/SheikahText';
+
+export { ErrorBoundary } from './components/ErrorBoundary';
+export type { ErrorBoundaryProps, ErrorBoundaryState } from './components/ErrorBoundary';

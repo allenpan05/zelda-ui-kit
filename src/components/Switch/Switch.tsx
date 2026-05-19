@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { forwardRef } from 'react';
 import styles from './switch.module.less';
 
 export interface SwitchProps {
@@ -10,50 +10,45 @@ export interface SwitchProps {
     className?: string;
 }
 
-export const Switch: React.FC<SwitchProps> = ({
-    checked: controlledChecked,
-    defaultChecked = false,
-    disabled = false,
-    size = 'middle',
-    onChange,
-    className,
-}) => {
-    const [internalChecked, setInternalChecked] = useState(defaultChecked);
-    const checked = controlledChecked !== undefined ? controlledChecked : internalChecked;
+export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
+    ({ checked: controlledChecked, defaultChecked = false, disabled = false, size = 'middle', onChange, className }, ref) => {
+        const [internalChecked, setInternalChecked] = React.useState(defaultChecked);
+        const checked = controlledChecked !== undefined ? controlledChecked : internalChecked;
 
-    const handleClick = () => {
-        if (disabled) return;
-        const next = !checked;
-        if (controlledChecked === undefined) setInternalChecked(next);
-        onChange?.(next);
-    };
+        const handleClick = () => {
+            if (disabled) return;
+            const next = !checked;
+            if (controlledChecked === undefined) setInternalChecked(next);
+            onChange?.(next);
+        };
 
-    const classNames = [
-        styles.switch,
-        styles[`switch-${size}`],
-        checked && styles['switch-checked'],
-        disabled && styles['switch-disabled'],
-        className,
-    ]
-        .filter(Boolean)
-        .join(' ');
+        const classNames = [
+            styles.switch,
+            styles[`switch-${size}`],
+            checked && styles['switch-checked'],
+            disabled && styles['switch-disabled'],
+            className,
+        ]
+            .filter(Boolean)
+            .join(' ');
 
-    return (
-        <button
-            type="button"
-            role="switch"
-            aria-checked={checked}
-            className={classNames}
-            onClick={handleClick}
-            disabled={disabled}
-        >
-            <span className={styles.track}>
-                <span className={styles.thumb} />
-                {/* Sheikah rune glow when on */}
-                {checked && <span className={styles.glow} />}
-            </span>
-        </button>
-    );
-};
+        return (
+            <button
+                ref={ref}
+                type="button"
+                role="switch"
+                aria-checked={checked}
+                className={classNames}
+                onClick={handleClick}
+                disabled={disabled}
+            >
+                <span className={styles.track}>
+                    <span className={styles.thumb} />
+                    {checked && <span className={styles.glow} />}
+                </span>
+            </button>
+        );
+    },
+);
 
 Switch.displayName = 'Switch';

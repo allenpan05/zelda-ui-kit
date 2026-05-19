@@ -26,6 +26,7 @@ const App: React.FC = () => {
   const [rupees, setRupees] = useState(1234);
   const [theme, setTheme] = useState<'dark' | 'light'>('light');
   const [toastVisible, setToastVisible] = useState(false);
+  const [questToastVisible, setQuestToastVisible] = useState(false);
 
   const toggleTheme = () => {
     const newTheme = theme === 'dark' ? 'light' : 'dark';
@@ -615,7 +616,7 @@ const App: React.FC = () => {
                 <Button type="primary" size="sm" onClick={() => setToastVisible(true)}>
                   📦 Show Item Toast
                 </Button>
-                <Button type="outline" size="sm" onClick={() => {}}>
+                <Button type="outline" size="sm" onClick={() => setQuestToastVisible(true)}>
                   🏆 Show Quest Toast
                 </Button>
               </div>
@@ -626,6 +627,15 @@ const App: React.FC = () => {
                   description="Obtained from a Guardian Scout. A high-energy core used in ancient Sheikah technology."
                   duration={4000}
                   onClose={() => setToastVisible(false)}
+                />
+              )}
+              {questToastVisible && (
+                <NotificationToast
+                  type="quest"
+                  title="Quest Complete"
+                  description="Defeated the Guardian Scout and recovered the ancient technology."
+                  duration={4000}
+                  onClose={() => setQuestToastVisible(false)}
                 />
               )}
             </div>

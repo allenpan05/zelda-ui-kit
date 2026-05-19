@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import classNames from 'classnames';
 import './style.less';
 
@@ -52,17 +52,13 @@ const iconMap: Record<SheikahIconName, string> = {
 export type SheikahIconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export interface SheikahIconProps extends React.HTMLAttributes<HTMLSpanElement> {
-  /** 圖標名稱 */
   name: SheikahIconName;
-  /** 尺寸 */
   size?: SheikahIconSize;
-  /** 是否發光 */
   glowing?: boolean;
-  /** 顏色 (CSS color) */
   color?: string;
 }
 
-const SheikahIcon: React.FC<SheikahIconProps> = ({
+export const SheikahIcon = forwardRef<HTMLSpanElement, SheikahIconProps>(({
   name,
   size = 'md',
   glowing = false,
@@ -70,7 +66,7 @@ const SheikahIcon: React.FC<SheikahIconProps> = ({
   className,
   style,
   ...rest
-}) => {
+}, ref) => {
   const classes = classNames(
     'zelda-sheikah-icon',
     `zelda-sheikah-icon--${size}`,
@@ -86,12 +82,11 @@ const SheikahIcon: React.FC<SheikahIconProps> = ({
   }
 
   return (
-    <span className={classes} style={mergedStyle} aria-hidden="true" {...rest}>
+    <span ref={ref} className={classes} style={mergedStyle} aria-hidden="true" {...rest}>
       {iconMap[name]}
     </span>
   );
-};
+});
 
 SheikahIcon.displayName = 'SheikahIcon';
 
-export default SheikahIcon;

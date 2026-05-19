@@ -1,27 +1,19 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import classNames from 'classnames';
 import './style.less';
 
 export interface SheikahPanelProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
-  /** 標題 */
   title?: React.ReactNode;
-  /** 副標題 */
   subtitle?: React.ReactNode;
-  /** 子元素 */
   children: React.ReactNode;
-  /** 底部 */
   footer?: React.ReactNode;
-  /** 是否帶邊框裝飾 */
   decorated?: boolean;
-  /** 是否發光 */
   glowing?: boolean;
-  /** 關閉回調 */
   onClose?: () => void;
-  /** 是否可關閉 */
   closable?: boolean;
 }
 
-const SheikahPanel: React.FC<SheikahPanelProps> = ({
+export const SheikahPanel = forwardRef<HTMLDivElement, SheikahPanelProps>(({
   title,
   subtitle,
   children,
@@ -32,7 +24,7 @@ const SheikahPanel: React.FC<SheikahPanelProps> = ({
   closable = false,
   className,
   ...rest
-}) => {
+}, ref) => {
   const classes = classNames(
     'zelda-sheikah-panel',
     {
@@ -43,8 +35,7 @@ const SheikahPanel: React.FC<SheikahPanelProps> = ({
   );
 
   return (
-    <div className={classes} {...rest}>
-      {/* 裝飾角 */}
+    <div ref={ref} className={classes} {...rest}>
       {decorated && (
         <>
           <div className="zelda-sheikah-panel__corner zelda-sheikah-panel__corner--tl" />
@@ -54,7 +45,6 @@ const SheikahPanel: React.FC<SheikahPanelProps> = ({
         </>
       )}
 
-      {/* 標題欄 */}
       {(title || closable) && (
         <div className="zelda-sheikah-panel__header">
           <div className="zelda-sheikah-panel__header-text">
@@ -71,24 +61,20 @@ const SheikahPanel: React.FC<SheikahPanelProps> = ({
         </div>
       )}
 
-      {/* 內容 */}
       <div className="zelda-sheikah-panel__content">
         {children}
       </div>
 
-      {/* 底部 */}
       {footer && (
         <div className="zelda-sheikah-panel__footer">
           {footer}
         </div>
       )}
 
-      {/* 掃描線效果 */}
       {decorated && <div className="zelda-sheikah-panel__scanline" />}
     </div>
   );
-};
+});
 
 SheikahPanel.displayName = 'SheikahPanel';
 
-export default SheikahPanel;
