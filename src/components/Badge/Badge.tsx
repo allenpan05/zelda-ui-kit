@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import classNames from 'classnames';
 import './style.less';
 
@@ -6,21 +6,15 @@ export type BadgeVariant = 'default' | 'primary' | 'success' | 'warning' | 'dang
 export type BadgeSize = 'sm' | 'md';
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
-  /** 徽章變體 */
   variant?: BadgeVariant;
-  /** 尺寸 */
   size?: BadgeSize;
-  /** 是否帶圓點 */
   dot?: boolean;
-  /** 數量 */
   count?: number;
-  /** 最大數量 */
   overflowCount?: number;
-  /** 子元素 */
   children?: React.ReactNode;
 }
 
-const Badge: React.FC<BadgeProps> = ({
+export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(({
   variant = 'default',
   size = 'md',
   dot = false,
@@ -29,7 +23,7 @@ const Badge: React.FC<BadgeProps> = ({
   children,
   className,
   ...rest
-}) => {
+}, ref) => {
   const classes = classNames(
     'zelda-badge',
     `zelda-badge--${variant}`,
@@ -50,7 +44,7 @@ const Badge: React.FC<BadgeProps> = ({
   };
 
   return (
-    <span className={classes} {...rest}>
+    <span ref={ref} className={classes} {...rest}>
       {children}
       {(dot || count !== undefined) && (
         <span className="zelda-badge__count">
@@ -59,8 +53,7 @@ const Badge: React.FC<BadgeProps> = ({
       )}
     </span>
   );
-};
+});
 
 Badge.displayName = 'Badge';
 
-export default Badge;

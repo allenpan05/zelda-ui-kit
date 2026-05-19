@@ -1,27 +1,19 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, forwardRef } from 'react';
 import classNames from 'classnames';
 import './style.less';
 
 export interface DialogueBoxProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** 說話者名稱 */
   speaker?: string;
-  /** 對話內容 */
   children: React.ReactNode;
-  /** 是否使用打字機效果 */
   typewriter?: boolean;
-  /** 打字速度 (ms) */
   typeSpeed?: number;
-  /** 關閉回調 */
   onClose?: () => void;
-  /** 是否顯示關閉按鈕 */
   closable?: boolean;
-  /** 頭像 */
   avatar?: React.ReactNode;
-  /** 是否顯示 */
   visible?: boolean;
 }
 
-const DialogueBox: React.FC<DialogueBoxProps> = ({
+export const DialogueBox = forwardRef<HTMLDivElement, DialogueBoxProps>(({
   speaker,
   children,
   typewriter = false,
@@ -32,11 +24,10 @@ const DialogueBox: React.FC<DialogueBoxProps> = ({
   visible = true,
   className,
   ...rest
-}) => {
+}, ref) => {
   const [displayText, setDisplayText] = useState<string>('');
   const [isTyping, setIsTyping] = useState(false);
 
-  // 獲取純文本
   const getTextContent = useCallback((node: React.ReactNode): string => {
     if (typeof node === 'string') return node;
     if (typeof node === 'number') return String(node);
@@ -50,7 +41,6 @@ const DialogueBox: React.FC<DialogueBoxProps> = ({
     return '';
   }, []);
 
-  // 打字機效果
   useEffect(() => {
     if (!typewriter || !visible) {
       setDisplayText('');
@@ -76,7 +66,6 @@ const DialogueBox: React.FC<DialogueBoxProps> = ({
     return () => clearInterval(timer);
   }, [children, typewriter, typeSpeed, visible, getTextContent]);
 
-  // 跳過動畫
   const handleSkip = () => {
     if (isTyping) {
       setDisplayText(getTextContent(children));
@@ -95,7 +84,7 @@ const DialogueBox: React.FC<DialogueBoxProps> = ({
   );
 
   return (
-    <div className={classes} {...rest}>
+    <div ref={ref} className={classes} {...rest}>
       {avatar && <div className="zelda-dialogue__avatar">{avatar}</div>}
       <div className="zelda-dialogue__content">
         {speaker && (
@@ -119,8 +108,7 @@ const DialogueBox: React.FC<DialogueBoxProps> = ({
       </div>
     </div>
   );
-};
+});
 
 DialogueBox.displayName = 'DialogueBox';
 
-export default DialogueBox;

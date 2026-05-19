@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import dts from 'vite-plugin-dts';
@@ -51,5 +52,11 @@ export default defineConfig({
             },
         },
         cssCodeSplit: false,
+    },
+    test: {
+        globals: true,
+        environment: 'jsdom',
+        setupFiles: ['./src/test/setup.ts'],
+        css: { modules: { classNameStrategy: 'non-scoped' } },
     },
 });

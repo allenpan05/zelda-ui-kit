@@ -1,2 +1,2 @@
-export { default as NotificationToast } from './NotificationToast';
+export { NotificationToast } from './NotificationToast';
 export type { NotificationToastProps, NotificationToastType } from './NotificationToast';

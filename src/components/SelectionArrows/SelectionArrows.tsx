@@ -1,21 +1,17 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import classNames from 'classnames';
 import './style.less';
 
 export type SelectionArrowsPosition = 'top' | 'bottom' | 'left' | 'right' | 'all';
 
 export interface SelectionArrowsProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** 箭頭位置 */
   position?: SelectionArrowsPosition;
-  /** 是否可見 */
   visible?: boolean;
-  /** 動畫速度: 'slow' | 'normal' | 'fast' */
   speed?: 'slow' | 'normal' | 'fast';
-  /** 顏色 */
   color?: string;
 }
 
-const SelectionArrows: React.FC<SelectionArrowsProps> = ({
+export const SelectionArrows = forwardRef<HTMLDivElement, SelectionArrowsProps>(({
   position = 'all',
   visible = true,
   speed = 'normal',
@@ -23,7 +19,7 @@ const SelectionArrows: React.FC<SelectionArrowsProps> = ({
   className,
   style,
   ...rest
-}) => {
+}, ref) => {
   if (!visible) return null;
 
   const classes = classNames(
@@ -42,7 +38,7 @@ const SelectionArrows: React.FC<SelectionArrowsProps> = ({
     position === 'all' || position === dir;
 
   return (
-    <div className={classes} style={mergedStyle} {...rest}>
+    <div ref={ref} className={classes} style={mergedStyle} {...rest}>
       {showArrow('top') && (
         <div className="zelda-arrows__arrow zelda-arrows__arrow--top">
           <div className="zelda-arrows__triangle" />
@@ -65,8 +61,7 @@ const SelectionArrows: React.FC<SelectionArrowsProps> = ({
       )}
     </div>
   );
-};
+});
 
 SelectionArrows.displayName = 'SelectionArrows';
 
-export default SelectionArrows;

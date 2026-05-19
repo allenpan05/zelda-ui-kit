@@ -1,42 +1,28 @@
-import React from 'react';
+import React, { useCallback, useMemo, forwardRef } from 'react';
 import classNames from 'classnames';
 import './style.less';
 
 export interface InventoryItem {
-  /** 唯一標識 */
   id: string;
-  /** 圖標 */
   icon: React.ReactNode;
-  /** 名稱 */
   name: string;
-  /** 數量 */
   count?: number;
-  /** 是否新物品 */
   isNew?: boolean;
-  /** 耐久度 (0-100) */
   durability?: number;
-  /** 類型 */
   type?: string;
 }
 
 export interface InventoryGridProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onSelect'> {
-  /** 物品列表 */
   items: InventoryItem[];
-  /** 列數 */
   columns?: number;
-  /** 總格數 */
   totalSlots?: number;
-  /** 選中的物品 ID */
   selectedId?: string | null;
-  /** 選中回調 */
   onSelect?: (item: InventoryItem | null) => void;
-  /** 是否顯示空格 */
   showEmpty?: boolean;
-  /** 格子尺寸 */
   cellSize?: 'sm' | 'md' | 'lg';
 }
 
-const InventoryGrid: React.FC<InventoryGridProps> = ({
+export const InventoryGrid = forwardRef<HTMLDivElement, InventoryGridProps>(({
   items,
   columns = 5,
   totalSlots = 20,
@@ -46,28 +32,54 @@ const InventoryGrid: React.FC<InventoryGridProps> = ({
   cellSize = 'md',
   className,
   ...rest
-}) => {
-  // 填充空格
-  const slots = Array.from({ length: totalSlots }, (_, index) => {
-    return items[index] || null;
-  });
+}, ref) => {
+  const slots = useMemo(
+    () => Array.from({ length: totalSlots }, (_, i) => items[i] || null),
+    [items, totalSlots],
+  );
 
-  const handleSelect = (item: InventoryItem | null, index: number) => {
-    if (onSelect) {
-      onSelect(item);
-    }
-  };
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLDivElement>) => {
+      const target = e.target as HTMLElement;
+      const cellEls = Array.from(
+        (e.currentTarget as HTMLElement).querySelectorAll<HTMLElement>('[role="gridcell"]'),
+      );
+      const currentIdx = cellEls.indexOf(target);
+      if (currentIdx === -1) return;
 
-  const classes = classNames(
-    'zelda-inventory',
-    `zelda-inventory--${cellSize}`,
-    className
+      let nextIdx = currentIdx;
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        nextIdx = Math.min(currentIdx + 1, cellEls.length - 1);
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        nextIdx = Math.max(currentIdx - 1, 0);
+      } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        nextIdx = Math.min(currentIdx + columns, cellEls.length - 1);
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        nextIdx = Math.max(currentIdx - columns, 0);
+      } else if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        onSelect?.(slots[currentIdx] ?? null);
+        return;
+      } else {
+        return;
+      }
+
+      cellEls[nextIdx].focus();
+    },
+    [columns, slots, onSelect],
   );
 
   return (
     <div
-      className={classes}
+      ref={ref}
+      className={classNames('zelda-inventory', `zelda-inventory--${cellSize}`, className)}
       style={{ gridTemplateColumns: `repeat(${columns}, 1fr)` }}
+      role="grid"
+      onKeyDown={handleKeyDown}
       {...rest}
     >
       {slots.map((item, index) => {
@@ -76,18 +88,16 @@ const InventoryGrid: React.FC<InventoryGridProps> = ({
         return (
           <div
             key={item?.id || `empty-${index}`}
-            className={classNames(
-              'zelda-inventory__cell',
-              {
-                'zelda-inventory__cell--empty': !item,
-                'zelda-inventory__cell--selected': isSelected,
-                'zelda-inventory__cell--new': item?.isNew,
-              }
-            )}
-            onClick={() => handleSelect(item, index)}
-            role="button"
-            tabIndex={0}
+            className={classNames('zelda-inventory__cell', {
+              'zelda-inventory__cell--empty': !item,
+              'zelda-inventory__cell--selected': isSelected,
+              'zelda-inventory__cell--new': item?.isNew,
+            })}
+            onClick={() => onSelect?.(item)}
+            role="gridcell"
+            tabIndex={isSelected ? 0 : index === 0 ? 0 : -1}
             aria-label={item?.name || 'Empty slot'}
+            aria-selected={isSelected || undefined}
           >
             {item ? (
               <>
@@ -121,7 +131,7 @@ const InventoryGrid: React.FC<InventoryGridProps> = ({
       })}
     </div>
   );
-};
+});
 
 InventoryGrid.displayName = 'InventoryGrid';
 

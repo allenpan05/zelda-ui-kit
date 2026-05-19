@@ -1,23 +1,18 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import classNames from 'classnames';
 import './style.less';
 
 export type HeartSize = 'sm' | 'md' | 'lg';
 
 export interface HeartProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** 當前值 */
   value: number;
-  /** 最大值 */
   max?: number;
-  /** 尺寸 */
   size?: HeartSize;
-  /** 是否顯示動畫 */
   animated?: boolean;
-  /** 是否顯示數字 */
   showValue?: boolean;
 }
 
-const Heart: React.FC<HeartProps> = ({
+export const Heart = forwardRef<HTMLDivElement, HeartProps>(({
   value,
   max = 10,
   size = 'md',
@@ -25,7 +20,7 @@ const Heart: React.FC<HeartProps> = ({
   showValue = false,
   className,
   ...rest
-}) => {
+}, ref) => {
   const classes = classNames(
     'zelda-heart',
     `zelda-heart--${size}`,
@@ -35,7 +30,6 @@ const Heart: React.FC<HeartProps> = ({
     className
   );
 
-  // 生成心形數組
   const hearts = Array.from({ length: max }, (_, index) => {
     const heartValue = value - index;
     let fill: 'full' | 'half' | 'empty' = 'empty';
@@ -65,7 +59,7 @@ const Heart: React.FC<HeartProps> = ({
   });
 
   return (
-    <div className={classes} {...rest}>
+    <div ref={ref} className={classes} {...rest}>
       <div className="zelda-heart__container">
         {hearts}
       </div>
@@ -76,8 +70,7 @@ const Heart: React.FC<HeartProps> = ({
       )}
     </div>
   );
-};
+});
 
 Heart.displayName = 'Heart';
 
-export default Heart;

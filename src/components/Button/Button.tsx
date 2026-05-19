@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import classNames from 'classnames';
 import './style.less';
 
@@ -6,19 +6,14 @@ export type ButtonType = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger
 export type ButtonSize = 'sm' | 'md' | 'lg';
 
 export interface ButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
-  /** 按鈕類型 */
   type?: ButtonType;
-  /** 按鈕尺寸 */
   size?: ButtonSize;
-  /** 是否載入中 */
   loading?: boolean;
-  /** 圖標 */
   icon?: React.ReactNode;
-  /** 子元素 */
   children?: React.ReactNode;
 }
 
-const Button: React.FC<ButtonProps> = ({
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
   type = 'primary',
   size = 'md',
   loading = false,
@@ -27,7 +22,7 @@ const Button: React.FC<ButtonProps> = ({
   className,
   disabled,
   ...rest
-}) => {
+}, ref) => {
   const classes = classNames(
     'zelda-button',
     `zelda-button--${type}`,
@@ -41,6 +36,7 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
+      ref={ref}
       className={classes}
       disabled={disabled || loading}
       {...rest}
@@ -58,8 +54,7 @@ const Button: React.FC<ButtonProps> = ({
       {children && <span className="zelda-button__text">{children}</span>}
     </button>
   );
-};
+});
 
 Button.displayName = 'Button';
 
-export default Button;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import classNames from 'classnames';
 import './style.less';
 
@@ -6,19 +6,14 @@ export type RupeeColor = 'green' | 'blue' | 'red' | 'purple' | 'gold';
 export type RupeeSize = 'sm' | 'md' | 'lg';
 
 export interface RupeeProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** 數量 */
   value: number;
-  /** 寶石顏色 */
   color?: RupeeColor;
-  /** 尺寸 */
   size?: RupeeSize;
-  /** 是否顯示動畫 */
   animated?: boolean;
-  /** 是否顯示圖標 */
   showIcon?: boolean;
 }
 
-const Rupee: React.FC<RupeeProps> = ({
+export const Rupee = forwardRef<HTMLDivElement, RupeeProps>(({
   value,
   color = 'green',
   size = 'md',
@@ -26,7 +21,7 @@ const Rupee: React.FC<RupeeProps> = ({
   showIcon = true,
   className,
   ...rest
-}) => {
+}, ref) => {
   const classes = classNames(
     'zelda-rupee',
     `zelda-rupee--${color}`,
@@ -37,7 +32,6 @@ const Rupee: React.FC<RupeeProps> = ({
     className
   );
 
-  // 格式化數字
   const formatNumber = (num: number): string => {
     if (num >= 10000) {
       return `${(num / 1000).toFixed(0)}k`;
@@ -46,7 +40,7 @@ const Rupee: React.FC<RupeeProps> = ({
   };
 
   return (
-    <div className={classes} {...rest}>
+    <div ref={ref} className={classes} {...rest}>
       {showIcon && (
         <div className="zelda-rupee__icon">
           <div className="zelda-rupee__gem">
@@ -57,8 +51,7 @@ const Rupee: React.FC<RupeeProps> = ({
       <span className="zelda-rupee__value">{formatNumber(value)}</span>
     </div>
   );
-};
+});
 
 Rupee.displayName = 'Rupee';
 
-export default Rupee;

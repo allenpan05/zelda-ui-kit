@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { forwardRef } from 'react';
 import styles from './alert.module.less';
 
 export type AlertType = 'info' | 'success' | 'warning' | 'error';
@@ -20,38 +20,32 @@ const iconMap: Record<AlertType, React.ReactNode> = {
     error: <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.5"/><path d="M5.5 5.5L10.5 10.5M10.5 5.5L5.5 10.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>,
 };
 
-export const Alert: React.FC<AlertProps> = ({
-    type = 'info',
-    title,
-    description,
-    closable = false,
-    showIcon = true,
-    onClose,
-    className,
-}) => {
-    const [visible, setVisible] = useState(true);
+export const Alert = forwardRef<HTMLDivElement, AlertProps>(
+    ({ type = 'info', title, description, closable = false, showIcon = true, onClose, className }, ref) => {
+        const [visible, setVisible] = React.useState(true);
 
-    if (!visible) return null;
+        if (!visible) return null;
 
-    const handleClose = () => {
-        setVisible(false);
-        onClose?.();
-    };
+        const handleClose = () => {
+            setVisible(false);
+            onClose?.();
+        };
 
-    return (
-        <div className={[styles.alert, styles[`alert-${type}`], className].filter(Boolean).join(' ')}>
-            {showIcon && <span className={styles.icon}>{iconMap[type]}</span>}
-            <div className={styles.content}>
-                {title && <div className={styles.title}>{title}</div>}
-                {description && <div className={styles.description}>{description}</div>}
+        return (
+            <div ref={ref} className={[styles.alert, styles[`alert-${type}`], className].filter(Boolean).join(' ')}>
+                {showIcon && <span className={styles.icon}>{iconMap[type]}</span>}
+                <div className={styles.content}>
+                    {title && <div className={styles.title}>{title}</div>}
+                    {description && <div className={styles.description}>{description}</div>}
+                </div>
+                {closable && (
+                    <button className={styles.close} onClick={handleClose} aria-label="Close">
+                        ✕
+                    </button>
+                )}
             </div>
-            {closable && (
-                <button className={styles.close} onClick={handleClose} aria-label="Close">
-                    ✕
-                </button>
-            )}
-        </div>
-    );
-};
+        );
+    },
+);
 
 Alert.displayName = 'Alert';

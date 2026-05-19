@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import classNames from 'classnames';
 import './style.less';
 
@@ -8,13 +8,9 @@ export type SheikahLetter =
   | 'question' | 'exclamation' | 'spot' | 'hyphen';
 
 export interface SheikahTextProps extends React.HTMLAttributes<HTMLSpanElement> {
-  /** 要顯示的文字（支援的字母） */
   text: string;
-  /** 字符大小 */
   size?: number;
-  /** 顏色 */
   color?: string;
-  /** 是否發光 */
   glowing?: boolean;
 }
 
@@ -37,7 +33,7 @@ function resolveLetter(ch: string): SheikahLetter | null {
   return null;
 }
 
-const SheikahText: React.FC<SheikahTextProps> = ({
+export const SheikahText = forwardRef<HTMLSpanElement, SheikahTextProps>(({
   text,
   size = 24,
   color,
@@ -45,7 +41,7 @@ const SheikahText: React.FC<SheikahTextProps> = ({
   className,
   style,
   ...rest
-}) => {
+}, ref) => {
   const classes = classNames(
     'zelda-sheikah-text',
     {
@@ -65,7 +61,6 @@ const SheikahText: React.FC<SheikahTextProps> = ({
   const letters = text.split('').map((ch, idx) => {
     const letter = resolveLetter(ch);
     if (!letter) {
-      // 不支援的字符用空白佔位
       return <span key={idx} className="zelda-sheikah-text__space" style={{ width: size * 0.6 }} />;
     }
     return (
@@ -78,12 +73,11 @@ const SheikahText: React.FC<SheikahTextProps> = ({
   });
 
   return (
-    <span className={classes} style={mergedStyle} {...rest}>
+    <span ref={ref} className={classes} style={mergedStyle} {...rest}>
       {letters}
     </span>
   );
-};
+});
 
 SheikahText.displayName = 'SheikahText';
 
-export default SheikahText;

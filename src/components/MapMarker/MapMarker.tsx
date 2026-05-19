@@ -1,21 +1,15 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import classNames from 'classnames';
 import './style.less';
 
 export type MapMarkerType = 'tower' | 'shrine' | 'stable' | 'village' | 'custom';
 
 export interface MapMarkerProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** 標記類型 */
   type?: MapMarkerType;
-  /** 標籤 */
   label?: string;
-  /** 是否啟用 */
   active?: boolean;
-  /** 是否已發現 */
   discovered?: boolean;
-  /** 自定義圖標 */
   icon?: React.ReactNode;
-  /** 點擊回調 */
   onClick?: () => void;
 }
 
@@ -47,7 +41,7 @@ const markerIcons: Record<MapMarkerType, React.ReactNode> = {
   ),
 };
 
-const MapMarker: React.FC<MapMarkerProps> = ({
+export const MapMarker = forwardRef<HTMLDivElement, MapMarkerProps>(({
   type = 'custom',
   label,
   active = false,
@@ -56,7 +50,7 @@ const MapMarker: React.FC<MapMarkerProps> = ({
   onClick,
   className,
   ...rest
-}) => {
+}, ref) => {
   const classes = classNames(
     'zelda-map-marker',
     `zelda-map-marker--${type}`,
@@ -70,6 +64,7 @@ const MapMarker: React.FC<MapMarkerProps> = ({
 
   return (
     <div
+      ref={ref}
       className={classes}
       onClick={onClick}
       role="button"
@@ -84,8 +79,7 @@ const MapMarker: React.FC<MapMarkerProps> = ({
       {active && <div className="zelda-map-marker__pulse" />}
     </div>
   );
-};
+});
 
 MapMarker.displayName = 'MapMarker';
 
-export default MapMarker;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import classNames from 'classnames';
 import './style.less';
 
@@ -6,27 +6,18 @@ export type CardVariant = 'default' | 'elevated' | 'outlined' | 'sheikah';
 export type CardPadding = 'none' | 'sm' | 'md' | 'lg';
 
 export interface CardProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
-  /** 卡片變體 */
   variant?: CardVariant;
-  /** 內邊距 */
   padding?: CardPadding;
-  /** 是否可懸停 */
   hoverable?: boolean;
-  /** 標題 */
   title?: React.ReactNode;
-  /** 副標題 */
   subtitle?: React.ReactNode;
-  /** 額外操作 */
   extra?: React.ReactNode;
-  /** 封面圖 */
   cover?: React.ReactNode;
-  /** 底部操作 */
   footer?: React.ReactNode;
-  /** 子元素 */
   children?: React.ReactNode;
 }
 
-const Card: React.FC<CardProps> = ({
+export const Card = forwardRef<HTMLDivElement, CardProps>(({
   variant = 'default',
   padding = 'md',
   hoverable = false,
@@ -38,7 +29,7 @@ const Card: React.FC<CardProps> = ({
   children,
   className,
   ...rest
-}) => {
+}, ref) => {
   const classes = classNames(
     'zelda-card',
     `zelda-card--${variant}`,
@@ -50,7 +41,7 @@ const Card: React.FC<CardProps> = ({
   );
 
   return (
-    <div className={classes} {...rest}>
+    <div ref={ref} className={classes} {...rest}>
       {cover && <div className="zelda-card__cover">{cover}</div>}
       <div className="zelda-card__body">
         {(title || extra) && (
@@ -67,8 +58,7 @@ const Card: React.FC<CardProps> = ({
       {footer && <div className="zelda-card__footer">{footer}</div>}
     </div>
   );
-};
+});
 
 Card.displayName = 'Card';
 
-export default Card;
