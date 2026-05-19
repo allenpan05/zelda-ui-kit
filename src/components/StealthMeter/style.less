@@ -1,0 +1,114 @@
+@import '../../styles/variables.less';
+@import '../../styles/mixins.less';
+
+.zelda-stealth {
+  display: inline-flex;
+  align-items: center;
+  gap: @space-sm;
+
+  &__icon {
+    color: @zelda-primary;
+    transition: @transition-normal;
+
+    svg {
+      display: block;
+    }
+  }
+
+  &__bar {
+    position: relative;
+    background: rgba(0, 200, 184, 0.1);
+    border: 1px solid @zelda-primary;
+    border-radius: @radius-sm;
+    overflow: hidden;
+  }
+
+  &__fill {
+    height: 100%;
+    background: linear-gradient(90deg, @zelda-primary-dark, @zelda-primary);
+    transition: width 0.3s ease;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__segments {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    z-index: 2;
+  }
+
+  &__segment {
+    flex: 1;
+    border-right: 1px solid rgba(26, 43, 60, 0.5);
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+
+  // Hidden state (high stealth)
+  &--hidden {
+    .zelda-stealth__icon {
+      color: @zelda-success;
+    }
+
+    .zelda-stealth__fill {
+      background: linear-gradient(90deg, @zelda-success, lighten(@zelda-success, 10%));
+    }
+  }
+
+  // Partial detection
+  &--partial {
+    .zelda-stealth__icon {
+      color: @zelda-warning;
+    }
+
+    .zelda-stealth__fill {
+      background: linear-gradient(90deg, @zelda-warning, lighten(@zelda-warning, 10%));
+    }
+  }
+
+  // Detected state
+  &--detected {
+    .zelda-stealth__icon {
+      color: @zelda-danger;
+      animation: stealthAlert 0.5s ease-in-out infinite;
+    }
+
+    .zelda-stealth__fill {
+      background: linear-gradient(90deg, @zelda-danger, lighten(@zelda-danger, 10%));
+    }
+
+    .zelda-stealth__bar {
+      border-color: @zelda-danger;
+      animation: stealthPulse 1s ease-in-out infinite;
+    }
+  }
+
+  // Sizes
+  &--sm {
+    .zelda-stealth__icon svg { width: 16px; height: 16px; }
+    .zelda-stealth__bar { width: 80px; height: 6px; }
+  }
+
+  &--md {
+    .zelda-stealth__icon svg { width: 20px; height: 20px; }
+    .zelda-stealth__bar { width: 120px; height: 8px; }
+  }
+
+  &--lg {
+    .zelda-stealth__icon svg { width: 24px; height: 24px; }
+    .zelda-stealth__bar { width: 180px; height: 12px; }
+  }
+}
+
+@keyframes stealthAlert {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+@keyframes stealthPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}

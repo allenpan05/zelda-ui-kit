@@ -1,0 +1,112 @@
+@import '../../styles/variables.less';
+@import '../../styles/mixins.less';
+
+.zelda-compass {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &__svg {
+    display: block;
+  }
+
+  &__ring {
+    stroke: @zelda-primary;
+    stroke-width: 2;
+    opacity: 0.6;
+  }
+
+  &__inner {
+    stroke: @zelda-primary;
+    stroke-width: 1;
+    opacity: 0.3;
+  }
+
+  &__face {
+    transition: transform 0.3s ease;
+  }
+
+  &__tick {
+    stroke: @zelda-primary-light;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+
+    &--primary {
+      stroke: @zelda-primary;
+      stroke-width: 2;
+    }
+  }
+
+  &__label {
+    .font-hylia();
+    font-size: 8px;
+    fill: @zelda-primary-light;
+    font-weight: 700;
+
+    &--north {
+      fill: @zelda-heart;
+    }
+  }
+
+  &__needle {
+    fill: @zelda-heart;
+    filter: drop-shadow(0 0 4px rgba(255, 71, 87, 0.5));
+  }
+
+  &__center {
+    fill: @zelda-sheikah-bg;
+    stroke: @zelda-primary;
+    stroke-width: 1.5;
+  }
+
+  &__marker {
+    fill: @zelda-warning;
+
+    &--active {
+      fill: @zelda-success;
+      filter: drop-shadow(0 0 3px rgba(46, 213, 115, 0.6));
+    }
+  }
+
+  &__marker-label {
+    .font-hylia();
+    font-size: 6px;
+    fill: @zelda-white;
+  }
+
+  &__degrees {
+    position: absolute;
+    bottom: -20px;
+    .font-hylia();
+    font-size: @font-size-xs;
+    color: @zelda-primary-light;
+    font-weight: 700;
+    text-align: center;
+    width: 100%;
+  }
+
+  // Sizes
+  &--sm {
+    .zelda-compass__svg { width: 48px; height: 48px; }
+    .zelda-compass__label { font-size: 6px; }
+    .zelda-compass__marker-label { font-size: 4px; }
+  }
+
+  &--md {
+    .zelda-compass__svg { width: 80px; height: 80px; }
+    .zelda-compass__label { font-size: 8px; }
+    .zelda-compass__marker-label { font-size: 6px; }
+  }
+
+  &--lg {
+    .zelda-compass__svg { width: 120px; height: 120px; }
+    .zelda-compass__label { font-size: 11px; }
+    .zelda-compass__marker-label { font-size: 8px; }
+  }
+
+  &--glowing {
+    .glow-animation();
+    border-radius: @radius-full;
+  }
+}

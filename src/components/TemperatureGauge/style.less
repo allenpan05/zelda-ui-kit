@@ -1,0 +1,124 @@
+@import '../../styles/variables.less';
+@import '../../styles/mixins.less';
+
+.zelda-temp {
+  display: inline-flex;
+  align-items: center;
+  gap: @space-sm;
+
+  &__icon {
+    transition: @transition-normal;
+
+    svg {
+      display: block;
+    }
+  }
+
+  &__bar {
+    flex: 1;
+  }
+
+  &__track {
+    position: relative;
+    background: rgba(0, 200, 184, 0.1);
+    border: 1px solid @zelda-primary;
+    border-radius: @radius-sm;
+    overflow: hidden;
+  }
+
+  &__fill {
+    height: 100%;
+    background: linear-gradient(90deg, @zelda-info, @zelda-primary, @zelda-warning, @zelda-danger);
+    transition: width 0.5s ease;
+  }
+
+  &__marker {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: @zelda-white;
+    opacity: 0.5;
+    transform: translateX(-50%);
+  }
+
+  &__value {
+    .font-hylia();
+    font-weight: 700;
+    min-width: 48px;
+    text-align: right;
+  }
+
+  // Cold state
+  &--cold {
+    .zelda-temp__icon {
+      color: @zelda-info;
+      animation: tempShiver 0.5s ease-in-out infinite;
+    }
+
+    .zelda-temp__fill {
+      background: linear-gradient(90deg, @zelda-info, lighten(@zelda-info, 15%));
+    }
+
+    .zelda-temp__value {
+      color: @zelda-info;
+    }
+  }
+
+  // Hot state
+  &--hot {
+    .zelda-temp__icon {
+      color: @zelda-danger;
+      animation: tempHeat 1s ease-in-out infinite;
+    }
+
+    .zelda-temp__fill {
+      background: linear-gradient(90deg, @zelda-warning, @zelda-danger);
+    }
+
+    .zelda-temp__value {
+      color: @zelda-danger;
+    }
+  }
+
+  // Comfortable state
+  &--comfortable {
+    .zelda-temp__icon {
+      color: @zelda-success;
+    }
+
+    .zelda-temp__value {
+      color: @zelda-success;
+    }
+  }
+
+  // Sizes
+  &--sm {
+    .zelda-temp__icon svg { width: 16px; height: 16px; }
+    .zelda-temp__track { width: 60px; height: 4px; }
+    .zelda-temp__value { font-size: @font-size-xs; }
+  }
+
+  &--md {
+    .zelda-temp__icon svg { width: 20px; height: 20px; }
+    .zelda-temp__track { width: 100px; height: 6px; }
+    .zelda-temp__value { font-size: @font-size-sm; }
+  }
+
+  &--lg {
+    .zelda-temp__icon svg { width: 24px; height: 24px; }
+    .zelda-temp__track { width: 160px; height: 8px; }
+    .zelda-temp__value { font-size: @font-size-md; }
+  }
+}
+
+@keyframes tempShiver {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-1px); }
+  75% { transform: translateX(1px); }
+}
+
+@keyframes tempHeat {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}

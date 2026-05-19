@@ -1,0 +1,129 @@
+@import '../../styles/variables.less';
+@import '../../styles/mixins.less';
+
+.zelda-rune {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: @space-xs;
+
+  &__circle {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__svg {
+    display: block;
+    transform: scaleX(-1);
+  }
+
+  &__bg {
+    stroke: rgba(0, 200, 184, 0.15);
+  }
+
+  &__fill {
+    stroke: @zelda-primary;
+    transition: stroke-dashoffset 0.4s ease;
+    filter: drop-shadow(0 0 4px rgba(0, 200, 184, 0.5));
+  }
+
+  &__icon {
+    position: absolute;
+    color: @zelda-primary;
+    transition: @transition-normal;
+
+    svg {
+      display: block;
+    }
+  }
+
+  &__ready-indicator {
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    color: @zelda-success;
+    background: @zelda-sheikah-bg;
+    border-radius: @radius-full;
+    padding: 1px;
+
+    svg {
+      display: block;
+    }
+  }
+
+  &__label {
+    .font-hylia();
+    font-weight: 700;
+    color: @zelda-primary-light;
+    text-align: center;
+  }
+
+  // Rune-specific colors
+  &--magnesis {
+    .zelda-rune__icon { color: @zelda-rupee-red; }
+    .zelda-rune__fill { stroke: @zelda-rupee-red; filter: drop-shadow(0 0 4px fade(@zelda-rupee-red, 50%)); }
+  }
+
+  &--stasis {
+    .zelda-rune__icon { color: @zelda-rupee-gold; }
+    .zelda-rune__fill { stroke: @zelda-rupee-gold; filter: drop-shadow(0 0 4px fade(@zelda-rupee-gold, 50%)); }
+  }
+
+  &--cryonis {
+    .zelda-rune__icon { color: @zelda-info; }
+    .zelda-rune__fill { stroke: @zelda-info; filter: drop-shadow(0 0 4px fade(@zelda-info, 50%)); }
+  }
+
+  &--bombs {
+    .zelda-rune__icon { color: @zelda-rupee-purple; }
+    .zelda-rune__fill { stroke: @zelda-rupee-purple; filter: drop-shadow(0 0 4px fade(@zelda-rupee-purple, 50%)); }
+  }
+
+  &--camera {
+    .zelda-rune__icon { color: @zelda-primary; }
+    .zelda-rune__fill { stroke: @zelda-primary; filter: drop-shadow(0 0 4px fade(@zelda-primary, 50%)); }
+  }
+
+  // Ready state
+  &--ready {
+    .zelda-rune__icon {
+      animation: runeReady 1s ease-in-out infinite;
+    }
+  }
+
+  // Cooldown state
+  &--cooldown {
+    .zelda-rune__icon {
+      opacity: 0.5;
+    }
+  }
+
+  // Sizes
+  &--sm {
+    .zelda-rune__svg { width: 32px; height: 32px; }
+    .zelda-rune__icon svg { width: 14px; height: 14px; }
+    .zelda-rune__ready-indicator svg { width: 8px; height: 8px; }
+    .zelda-rune__label { font-size: @font-size-xs; }
+  }
+
+  &--md {
+    .zelda-rune__svg { width: 48px; height: 48px; }
+    .zelda-rune__icon svg { width: 20px; height: 20px; }
+    .zelda-rune__ready-indicator svg { width: 10px; height: 10px; }
+    .zelda-rune__label { font-size: @font-size-sm; }
+  }
+
+  &--lg {
+    .zelda-rune__svg { width: 72px; height: 72px; }
+    .zelda-rune__icon svg { width: 32px; height: 32px; }
+    .zelda-rune__ready-indicator svg { width: 14px; height: 14px; }
+    .zelda-rune__label { font-size: @font-size-md; }
+  }
+}
+
+@keyframes runeReady {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}

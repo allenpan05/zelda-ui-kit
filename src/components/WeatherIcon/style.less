@@ -1,0 +1,107 @@
+@import '../../styles/variables.less';
+@import '../../styles/mixins.less';
+
+.zelda-weather {
+  display: inline-flex;
+  align-items: center;
+  gap: @space-sm;
+
+  &__icon {
+    color: @zelda-primary;
+    transition: @transition-normal;
+
+    svg {
+      display: block;
+    }
+  }
+
+  &__label {
+    .font-hylia();
+    font-weight: 700;
+    color: @zelda-white;
+  }
+
+  &__temp {
+    .font-hylia();
+    font-weight: 700;
+    color: @zelda-primary-light;
+  }
+
+  // Weather-specific colors
+  &--sunny &__icon { color: @zelda-rupee-gold; }
+  &--cloudy &__icon { color: @zelda-text-light; }
+  &--rainy &__icon { color: @zelda-info; }
+  &--stormy &__icon { color: @zelda-rupee-purple; }
+  &--snowy &__icon { color: @zelda-white; }
+  &--foggy &__icon { color: @zelda-text-light; }
+  &--windy &__icon { color: @zelda-primary-light; }
+
+  // Animations
+  &--animated {
+    &.zelda-weather--sunny .zelda-weather__icon {
+      animation: weatherRotate 10s linear infinite;
+    }
+
+    &.zelda-weather--rainy .zelda-weather__icon {
+      animation: weatherBounce 2s ease-in-out infinite;
+    }
+
+    &.zelda-weather--stormy .zelda-weather__icon {
+      animation: weatherShake 0.5s ease-in-out infinite;
+    }
+
+    &.zelda-weather--snowy .zelda-weather__icon {
+      animation: weatherFloat 3s ease-in-out infinite;
+    }
+
+    &.zelda-weather--windy .zelda-weather__icon {
+      animation: weatherSway 2s ease-in-out infinite;
+    }
+  }
+
+  // Sizes
+  &--sm {
+    .zelda-weather__icon svg { width: 20px; height: 20px; }
+    .zelda-weather__label { font-size: @font-size-xs; }
+    .zelda-weather__temp { font-size: @font-size-xs; }
+  }
+
+  &--md {
+    .zelda-weather__icon svg { width: 28px; height: 28px; }
+    .zelda-weather__label { font-size: @font-size-sm; }
+    .zelda-weather__temp { font-size: @font-size-sm; }
+  }
+
+  &--lg {
+    .zelda-weather__icon svg { width: 40px; height: 40px; }
+    .zelda-weather__label { font-size: @font-size-md; }
+    .zelda-weather__temp { font-size: @font-size-md; }
+  }
+}
+
+@keyframes weatherRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes weatherBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+@keyframes weatherShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+}
+
+@keyframes weatherFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes weatherSway {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-5deg); }
+  75% { transform: rotate(5deg); }
+}

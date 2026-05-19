@@ -1,0 +1,233 @@
+@import '../../styles/variables.less';
+@import '../../styles/mixins.less';
+
+.zelda-item-detail {
+  .sheikah-panel();
+  padding: @space-md;
+  min-width: 240px;
+  max-width: 320px;
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    gap: @space-md;
+    margin-bottom: @space-md;
+  }
+
+  &__icon-wrapper {
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  &__icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 200, 184, 0.1);
+    border: 2px solid @zelda-primary;
+    border-radius: @radius-md;
+
+    svg {
+      width: 32px;
+      height: 32px;
+      color: @zelda-primary;
+    }
+  }
+
+  &__icon-placeholder {
+    width: 48px;
+    height: 48px;
+    background: rgba(0, 200, 184, 0.05);
+    border: 2px dashed rgba(0, 200, 184, 0.3);
+    border-radius: @radius-md;
+  }
+
+  &__count {
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    .font-hylia();
+    font-size: @font-size-xs;
+    font-weight: 700;
+    color: @zelda-white;
+    background: @zelda-primary-dark;
+    padding: 1px 4px;
+    border-radius: @radius-sm;
+  }
+
+  &__title-area {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__name {
+    .font-hylia();
+    font-size: @font-size-lg;
+    font-weight: 700;
+    color: @zelda-white;
+    margin: 0 0 2px;
+    line-height: @line-height-tight;
+  }
+
+  &__rarity {
+    .font-body();
+    font-size: @font-size-xs;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  &__close {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    color: @zelda-text-light;
+    cursor: pointer;
+    transition: @transition-fast;
+    border-radius: @radius-sm;
+
+    &:hover {
+      color: @zelda-white;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &__desc {
+    .font-body();
+    font-size: @font-size-sm;
+    color: @zelda-primary-light;
+    line-height: @line-height-normal;
+    margin: 0 0 @space-md;
+    opacity: 0.8;
+  }
+
+  &__stats {
+    display: flex;
+    flex-direction: column;
+    gap: @space-xs;
+    padding: @space-sm;
+    background: rgba(0, 200, 184, 0.05);
+    border-radius: @radius-md;
+    margin-bottom: @space-md;
+  }
+
+  &__stat {
+    display: flex;
+    align-items: center;
+    gap: @space-sm;
+  }
+
+  &__stat-icon {
+    width: 16px;
+    height: 16px;
+    color: @zelda-primary;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__stat-label {
+    .font-body();
+    font-size: @font-size-sm;
+    color: @zelda-text-light;
+    flex: 1;
+  }
+
+  &__stat-value {
+    .font-hylia();
+    font-size: @font-size-sm;
+    font-weight: 700;
+    color: @zelda-white;
+  }
+
+  &__effect {
+    padding: @space-sm;
+    background: rgba(0, 200, 184, 0.05);
+    border-radius: @radius-md;
+    margin-bottom: @space-md;
+  }
+
+  &__effect-label {
+    .font-body();
+    font-size: @font-size-xs;
+    color: @zelda-primary;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-right: @space-xs;
+  }
+
+  &__effect-text {
+    .font-body();
+    font-size: @font-size-sm;
+    color: @zelda-primary-light;
+  }
+
+  &__prices {
+    display: flex;
+    gap: @space-md;
+    padding-top: @space-sm;
+    border-top: 1px solid rgba(0, 200, 184, 0.2);
+  }
+
+  &__price {
+    display: flex;
+    align-items: center;
+    gap: @space-xs;
+  }
+
+  &__price-label {
+    .font-body();
+    font-size: @font-size-xs;
+    color: @zelda-text-light;
+  }
+
+  &__price-value {
+    .font-hylia();
+    font-size: @font-size-sm;
+    font-weight: 700;
+    color: @zelda-rupee-gold;
+  }
+
+  // Rarity borders
+  &--common {
+    border-color: fade(#B2BEC3, 50%);
+  }
+
+  &--uncommon {
+    border-color: fade(@zelda-success, 50%);
+    box-shadow: 0 0 10px fade(@zelda-success, 20%);
+  }
+
+  &--rare {
+    border-color: fade(@zelda-info, 50%);
+    box-shadow: 0 0 10px fade(@zelda-info, 20%);
+  }
+
+  &--legendary {
+    border-color: fade(@zelda-rupee-gold, 50%);
+    box-shadow: 0 0 15px fade(@zelda-rupee-gold, 30%);
+    animation: legendaryGlow 2s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes legendaryGlow {
+  from {
+    box-shadow: 0 0 10px fade(@zelda-rupee-gold, 20%);
+  }
+  to {
+    box-shadow: 0 0 20px fade(@zelda-rupee-gold, 40%);
+  }
+}

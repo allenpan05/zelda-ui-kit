@@ -17,6 +17,13 @@ import { StaminaWheel } from '../src/components/StaminaWheel';
 import { SelectionArrows } from '../src/components/SelectionArrows';
 import { NotificationToast } from '../src/components/NotificationToast';
 import { SheikahText } from '../src/components/SheikahText';
+import { Compass } from '../src/components/Compass';
+import { StealthMeter } from '../src/components/StealthMeter';
+import { TemperatureGauge } from '../src/components/TemperatureGauge';
+import { ItemDetail } from '../src/components/ItemDetail';
+import { BossHealthBar } from '../src/components/BossHealthBar';
+import { WeatherIcon } from '../src/components/WeatherIcon';
+import { RuneCooldown } from '../src/components/RuneCooldown';
 
 const App: React.FC = () => {
   const [dialogueVisible, setDialogueVisible] = useState(false);
@@ -27,6 +34,11 @@ const App: React.FC = () => {
   const [theme, setTheme] = useState<'dark' | 'light'>('light');
   const [toastVisible, setToastVisible] = useState(false);
   const [questToastVisible, setQuestToastVisible] = useState(false);
+  const [compassHeading, setCompassHeading] = useState(0);
+  const [stealthValue, setStealthValue] = useState(75);
+  const [temperature, setTemperature] = useState(22);
+  const [bossHealth, setBossHealth] = useState(80);
+  const [runeCooldown, setRuneCooldown] = useState(60);
 
   const toggleTheme = () => {
     const newTheme = theme === 'dark' ? 'light' : 'dark';
@@ -120,6 +132,13 @@ const App: React.FC = () => {
               <li><a href="#sheikah-text">SheikahText</a></li>
               <li><a href="#toast">NotificationToast</a></li>
               <li><a href="#arrows">SelectionArrows</a></li>
+              <li><a href="#compass">Compass</a></li>
+              <li><a href="#stealth">StealthMeter</a></li>
+              <li><a href="#temperature">TemperatureGauge</a></li>
+              <li><a href="#item-detail">ItemDetail</a></li>
+              <li><a href="#boss-health">BossHealthBar</a></li>
+              <li><a href="#weather">WeatherIcon</a></li>
+              <li><a href="#rune">RuneCooldown</a></li>
             </ul>
           </div>
         </nav>
@@ -690,6 +709,289 @@ const App: React.FC = () => {
                   <SelectionArrows speed="fast" />
                   <span style={{ fontSize: 12 }}>Fast</span>
                 </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Compass */}
+          <section id="compass" className="demo-section">
+            <div className="demo-section-header">
+              <h2 className="demo-section-title">Compass (指南針)</h2>
+              <p className="demo-section-desc">遊戲風格指南針，顯示方向和自定義標記點</p>
+            </div>
+
+            <div className="demo-block">
+              <h3 className="demo-block-title">交互式演示</h3>
+              <div className="demo-interactive">
+                <div className="demo-stamina-display">
+                  <Compass
+                    heading={compassHeading}
+                    size="lg"
+                    showDirections
+                    showDegrees
+                    markers={[
+                      { angle: 45, label: 'Shrine', active: true },
+                      { angle: 200, label: 'Tower' },
+                    ]}
+                  />
+                </div>
+                <div className="demo-heart-controls">
+                  <Button type="primary" size="sm" onClick={() => setCompassHeading((compassHeading - 45 + 360) % 360)}>
+                    ← Rotate Left
+                  </Button>
+                  <Button type="primary" size="sm" onClick={() => setCompassHeading((compassHeading + 45) % 360)}>
+                    Rotate Right →
+                  </Button>
+                </div>
+              </div>
+            </div>
+
+            <div className="demo-block">
+              <h3 className="demo-block-title">不同尺寸</h3>
+              <div className="demo-row" style={{ alignItems: 'center', gap: 32 }}>
+                <div className="demo-heart-item">
+                  <Compass heading={0} size="sm" />
+                  <span>Small</span>
+                </div>
+                <div className="demo-heart-item">
+                  <Compass heading={90} size="md" showDegrees />
+                  <span>Medium</span>
+                </div>
+                <div className="demo-heart-item">
+                  <Compass heading={225} size="lg" showDirections showDegrees />
+                  <span>Large</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* StealthMeter */}
+          <section id="stealth" className="demo-section">
+            <div className="demo-section-header">
+              <h2 className="demo-section-title">StealthMeter (潛行計)</h2>
+              <p className="demo-section-desc">潛行狀態指示器，顯示隱蔽程度和被發現警告</p>
+            </div>
+
+            <div className="demo-block">
+              <h3 className="demo-block-title">交互式演示</h3>
+              <div className="demo-interactive">
+                <StealthMeter value={stealthValue} size="lg" />
+                <div className="demo-heart-controls">
+                  <Button type="danger" size="sm" onClick={() => setStealthValue(Math.max(0, stealthValue - 15))}>
+                    👁️ More Visible
+                  </Button>
+                  <Button type="primary" size="sm" onClick={() => setStealthValue(Math.min(100, stealthValue + 15))}>
+                    🫥 More Hidden
+                  </Button>
+                  <Button type="outline" size="sm" onClick={() => setStealthValue(0)}>
+                    Detected!
+                  </Button>
+                </div>
+              </div>
+            </div>
+
+            <div className="demo-block">
+              <h3 className="demo-block-title">不同狀態</h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                <StealthMeter value={90} size="md" />
+                <StealthMeter value={50} size="md" />
+                <StealthMeter value={10} size="md" detected />
+              </div>
+            </div>
+          </section>
+
+          {/* TemperatureGauge */}
+          <section id="temperature" className="demo-section">
+            <div className="demo-section-header">
+              <h2 className="demo-section-title">TemperatureGauge (溫度計)</h2>
+              <p className="demo-section-desc">環境溫度指示器，顯示寒冷和炎熱警告</p>
+            </div>
+
+            <div className="demo-block">
+              <h3 className="demo-block-title">交互式演示</h3>
+              <div className="demo-interactive">
+                <TemperatureGauge value={temperature} size="lg" showIcon showValue />
+                <div className="demo-heart-controls">
+                  <Button type="primary" size="sm" onClick={() => setTemperature(Math.max(-40, temperature - 10))}>
+                    ❄️ Colder
+                  </Button>
+                  <Button type="danger" size="sm" onClick={() => setTemperature(Math.min(60, temperature + 10))}>
+                    🔥 Warmer
+                  </Button>
+                  <Button type="outline" size="sm" onClick={() => setTemperature(22)}>
+                    Reset
+                  </Button>
+                </div>
+              </div>
+            </div>
+
+            <div className="demo-block">
+              <h3 className="demo-block-title">不同狀態</h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                <TemperatureGauge value={-20} size="md" />
+                <TemperatureGauge value={22} size="md" />
+                <TemperatureGauge value={50} size="md" />
+              </div>
+            </div>
+          </section>
+
+          {/* ItemDetail */}
+          <section id="item-detail" className="demo-section">
+            <div className="demo-section-header">
+              <h2 className="demo-section-title">ItemDetail (物品詳情)</h2>
+              <p className="demo-section-desc">物品詳情卡片，顯示屬性、效果和價格</p>
+            </div>
+
+            <div className="demo-block">
+              <h3 className="demo-block-title">不同稀有度</h3>
+              <div className="demo-cards">
+                <ItemDetail
+                  name="Traveler's Sword"
+                  description="A common sword often carried by travelers."
+                  rarity="common"
+                  stats={[
+                    { label: 'Attack', value: 5 },
+                    { label: 'Durability', value: 20 },
+                  ]}
+                  sellPrice={15}
+                  closable
+                />
+                <ItemDetail
+                  name="Flameblade"
+                  description="A magical blade that burns with an eternal flame."
+                  rarity="rare"
+                  stats={[
+                    { label: 'Attack', value: 24 },
+                    { label: 'Durability', value: 60 },
+                  ]}
+                  effect="Fire damage in cold areas"
+                  sellPrice={340}
+                  closable
+                />
+                <ItemDetail
+                  name="Master Sword"
+                  description="The legendary blade that seals the darkness."
+                  rarity="legendary"
+                  stats={[
+                    { label: 'Attack', value: 30 },
+                    { label: 'Special', value: '60 vs Evil' },
+                  ]}
+                  effect="Bonus damage to Ganon-afflicted enemies"
+                  closable
+                />
+              </div>
+            </div>
+          </section>
+
+          {/* BossHealthBar */}
+          <section id="boss-health" className="demo-section">
+            <div className="demo-section-header">
+              <h2 className="demo-section-title">BossHealthBar (Boss 血量條)</h2>
+              <p className="demo-section-desc">分段式 Boss 血量條，帶有低血量警告效果</p>
+            </div>
+
+            <div className="demo-block">
+              <h3 className="demo-block-title">交互式演示</h3>
+              <div className="demo-interactive">
+                <div style={{ width: '100%', maxWidth: 500 }}>
+                  <BossHealthBar
+                    name="Calamity Ganon"
+                    value={bossHealth}
+                    max={100}
+                    segments={5}
+                    size="lg"
+                    phase={2}
+                  />
+                </div>
+                <div className="demo-heart-controls">
+                  <Button type="danger" size="sm" onClick={() => setBossHealth(Math.max(0, bossHealth - 15))}>
+                    ⚔️ Attack
+                  </Button>
+                  <Button type="ghost" size="sm" onClick={() => setBossHealth(100)}>
+                    Reset
+                  </Button>
+                </div>
+              </div>
+            </div>
+
+            <div className="demo-block">
+              <h3 className="demo-block-title">不同狀態</h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 24, maxWidth: 400 }}>
+                <BossHealthBar name="Windblight Ganon" value={100} max={100} segments={4} size="md" phase={1} />
+                <BossHealthBar name="Fireblight Ganon" value={45} max={100} segments={4} size="md" phase={2} />
+                <BossHealthBar name="Waterblight Ganon" value={10} max={100} segments={4} size="md" staggered />
+              </div>
+            </div>
+          </section>
+
+          {/* WeatherIcon */}
+          <section id="weather" className="demo-section">
+            <div className="demo-section-header">
+              <h2 className="demo-section-title">WeatherIcon (天氣圖標)</h2>
+              <p className="demo-section-desc">天氣指示器，帶有動態效果和溫度顯示</p>
+            </div>
+
+            <div className="demo-block">
+              <h3 className="demo-block-title">天氣類型</h3>
+              <div className="demo-row" style={{ flexWrap: 'wrap', gap: 24 }}>
+                {(['sunny', 'cloudy', 'rainy', 'stormy', 'snowy', 'foggy', 'windy'] as const).map(weather => (
+                  <div key={weather} className="demo-heart-item">
+                    <WeatherIcon weather={weather} size="lg" animated />
+                    <span>{weather.charAt(0).toUpperCase() + weather.slice(1)}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="demo-block">
+              <h3 className="demo-block-title">帶溫度顯示</h3>
+              <div className="demo-row" style={{ gap: 32 }}>
+                <WeatherIcon weather="snowy" size="lg" showLabel temperature={-5} />
+                <WeatherIcon weather="sunny" size="lg" showLabel temperature={28} />
+                <WeatherIcon weather="stormy" size="lg" showLabel temperature={18} />
+              </div>
+            </div>
+          </section>
+
+          {/* RuneCooldown */}
+          <section id="rune" className="demo-section">
+            <div className="demo-section-header">
+              <h2 className="demo-section-title">RuneCooldown (符文冷卻)</h2>
+              <p className="demo-section-desc">符文技能冷卻指示器，顯示可用狀態</p>
+            </div>
+
+            <div className="demo-block">
+              <h3 className="demo-block-title">交互式演示</h3>
+              <div className="demo-interactive">
+                <RuneCooldown
+                  rune="magnesis"
+                  cooldown={runeCooldown}
+                  maxCooldown={100}
+                  size="lg"
+                  showLabel
+                />
+                <div className="demo-heart-controls">
+                  <Button type="danger" size="sm" onClick={() => setRuneCooldown(Math.max(0, runeCooldown - 20))}>
+                    Use Ability
+                  </Button>
+                  <Button type="primary" size="sm" onClick={() => setRuneCooldown(Math.min(100, runeCooldown + 20))}>
+                    Recover
+                  </Button>
+                  <Button type="ghost" size="sm" onClick={() => setRuneCooldown(100)}>
+                    Full Cooldown
+                  </Button>
+                </div>
+              </div>
+            </div>
+
+            <div className="demo-block">
+              <h3 className="demo-block-title">所有符文</h3>
+              <div className="demo-row" style={{ gap: 24 }}>
+                <RuneCooldown rune="magnesis" cooldown={100} size="md" showLabel />
+                <RuneCooldown rune="stasis" cooldown={75} size="md" showLabel />
+                <RuneCooldown rune="cryonis" cooldown={50} size="md" showLabel />
+                <RuneCooldown rune="bombs" cooldown={25} size="md" showLabel />
+                <RuneCooldown rune="camera" cooldown={0} size="md" showLabel />
               </div>
             </div>
           </section>

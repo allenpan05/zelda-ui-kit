@@ -1,0 +1,155 @@
+@import '../../styles/variables.less';
+@import '../../styles/mixins.less';
+
+.zelda-boss-health {
+  width: 100%;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: @space-sm;
+    margin-bottom: @space-sm;
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    color: @zelda-danger;
+
+    svg {
+      display: block;
+    }
+  }
+
+  &__title {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__name {
+    .font-hylia();
+    font-weight: 700;
+    color: @zelda-white;
+    margin: 0;
+    line-height: @line-height-tight;
+    text-shadow: 0 0 10px rgba(255, 71, 87, 0.5);
+  }
+
+  &__phase {
+    .font-body();
+    font-size: @font-size-xs;
+    color: @zelda-text-light;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  &__value {
+    .font-hylia();
+    font-size: @font-size-sm;
+    font-weight: 700;
+    color: @zelda-text-light;
+    flex-shrink: 0;
+  }
+
+  &__bar {
+    display: flex;
+    gap: 3px;
+  }
+
+  &__segment {
+    flex: 1;
+    position: relative;
+    background: rgba(255, 71, 87, 0.1);
+    border: 1px solid rgba(255, 71, 87, 0.3);
+    border-radius: @radius-sm;
+    overflow: hidden;
+  }
+
+  &__segment-fill {
+    height: 100%;
+    background: linear-gradient(90deg, @zelda-danger, lighten(@zelda-danger, 10%));
+    transition: width 0.5s ease;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 40%;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.2), transparent);
+    }
+  }
+
+  &__segment--current {
+    .zelda-boss-health__segment-fill {
+      animation: bossSegmentPulse 1s ease-in-out infinite;
+    }
+  }
+
+  &__segment-divider {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: @zelda-sheikah-bg;
+  }
+
+  // Low health warning
+  &--low {
+    .zelda-boss-health__segment-fill {
+      background: linear-gradient(90deg, darken(@zelda-danger, 10%), @zelda-danger);
+      animation: bossLowHealth 0.8s ease-in-out infinite;
+    }
+
+    .zelda-boss-health__name {
+      animation: bossNameFlash 0.5s ease-in-out infinite;
+    }
+  }
+
+  // Staggered animation
+  &--staggered {
+    .zelda-boss-health__segment {
+      &:nth-child(1) { transition-delay: 0ms; }
+      &:nth-child(2) { transition-delay: 100ms; }
+      &:nth-child(3) { transition-delay: 200ms; }
+      &:nth-child(4) { transition-delay: 300ms; }
+      &:nth-child(5) { transition-delay: 400ms; }
+    }
+  }
+
+  // Sizes
+  &--sm {
+    .zelda-boss-health__icon svg { width: 16px; height: 16px; }
+    .zelda-boss-health__name { font-size: @font-size-sm; }
+    .zelda-boss-health__segment { height: 8px; }
+  }
+
+  &--md {
+    .zelda-boss-health__icon svg { width: 20px; height: 20px; }
+    .zelda-boss-health__name { font-size: @font-size-lg; }
+    .zelda-boss-health__segment { height: 12px; }
+  }
+
+  &--lg {
+    .zelda-boss-health__icon svg { width: 24px; height: 24px; }
+    .zelda-boss-health__name { font-size: @font-size-xl; }
+    .zelda-boss-health__segment { height: 16px; }
+  }
+}
+
+@keyframes bossSegmentPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes bossLowHealth {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes bossNameFlash {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}

@@ -93,3 +93,27 @@ export type { SheikahTextProps, SheikahLetter } from './components/SheikahText';
 
 export { ErrorBoundary } from './components/ErrorBoundary';
 export type { ErrorBoundaryProps, ErrorBoundaryState } from './components/ErrorBoundary';
+
+// ============================================
+// 新增 Zelda 組件 (來自 Figma BOTW UI Kit)
+// ============================================
+export { Compass } from './components/Compass';
+export type { CompassProps, CompassSize } from './components/Compass';
+
+export { StealthMeter } from './components/StealthMeter';
+export type { StealthMeterProps, StealthMeterSize } from './components/StealthMeter';
+
+export { TemperatureGauge } from './components/TemperatureGauge';
+export type { TemperatureGaugeProps, TemperatureGaugeSize, TemperatureUnit } from './components/TemperatureGauge';
+
+export { ItemDetail } from './components/ItemDetail';
+export type { ItemDetailProps, ItemDetailRarity } from './components/ItemDetail';
+
+export { BossHealthBar } from './components/BossHealthBar';
+export type { BossHealthBarProps, BossHealthBarSize } from './components/BossHealthBar';
+
+export { WeatherIcon } from './components/WeatherIcon';
+export type { WeatherIconProps, WeatherType, WeatherIconSize } from './components/WeatherIcon';
+
+export { RuneCooldown } from './components/RuneCooldown';
+export type { RuneCooldownProps, RuneCooldownSize, RuneType } from './components/RuneCooldown';
