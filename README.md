@@ -10,8 +10,6 @@ A Sheikah-inspired React component library built with TypeScript and Less. Bring
 
 **[Live Demo](https://allenpan05.github.io/zelda-ui-kit/)**
 
-![Zelda UI Kit Demo](zelda-ui-kit-demo-full.png)
-
 ---
 
 ## Install
