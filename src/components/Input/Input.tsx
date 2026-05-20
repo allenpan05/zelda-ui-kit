@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import styles from './input.module.less';
 
-export type InputSize = 'small' | 'middle' | 'large';
+export type InputSize = 'sm' | 'md' | 'lg';
 
 export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix'> {
     size?: InputSize;
@@ -14,7 +14,7 @@ export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElem
 export const Input = forwardRef<HTMLInputElement, InputProps>(
     (
         {
-            size = 'middle',
+            size = 'md',
             prefix,
             suffix,
             error = false,

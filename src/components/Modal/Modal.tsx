@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useEffect, useCallback } from 'react';
+import React, { forwardRef, useRef, useEffect } from 'react';
 import classNames from 'classnames';
 import { useMergedRef } from '@/hooks/useMergedRef';
 import styles from './modal.module.less';
@@ -22,8 +22,10 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
         const innerRef = useRef<HTMLDivElement>(null);
         const mergedRef = useMergedRef(innerRef, ref);
 
-        const handleKeyDown = useCallback(
-            (e: KeyboardEvent) => {
+        useEffect(() => {
+            if (!open) return;
+
+            const handleKeyDownLocal = (e: KeyboardEvent) => {
                 if (e.key === 'Escape' && onClose) {
                     onClose();
                     return;
@@ -48,33 +50,24 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
                         }
                     }
                 }
-            },
-            [onClose],
-        );
+            };
 
-        useEffect(() => {
-            if (open) {
-                document.addEventListener('keydown', handleKeyDown);
-                document.body.style.overflow = 'hidden';
+            document.addEventListener('keydown', handleKeyDownLocal);
+            document.body.style.overflow = 'hidden';
 
-                const timer = setTimeout(() => {
-                    if (innerRef.current) {
-                        const focusable = innerRef.current.querySelectorAll<HTMLElement>(FOCUSABLE);
-                        if (focusable.length > 0) focusable[0].focus();
-                    }
-                }, 0);
+            const timer = setTimeout(() => {
+                if (innerRef.current) {
+                    const focusable = innerRef.current.querySelectorAll<HTMLElement>(FOCUSABLE);
+                    if (focusable.length > 0) focusable[0].focus();
+                }
+            }, 0);
 
-                return () => {
-                    clearTimeout(timer);
-                    document.removeEventListener('keydown', handleKeyDown);
-                    document.body.style.overflow = '';
-                };
-            }
             return () => {
-                document.removeEventListener('keydown', handleKeyDown);
+                clearTimeout(timer);
+                document.removeEventListener('keydown', handleKeyDownLocal);
                 document.body.style.overflow = '';
             };
-        }, [open, handleKeyDown]);
+        }, [open, onClose]);
 
         if (!open) return null;
 

@@ -7,17 +7,17 @@
 .track {
     flex: 1;
     background: var(--zelda-bg-color-tertiary);
-    border-radius: 999px;
+    border-radius: var(--radius-full);
     overflow: hidden;
 }
 
-.track-small { height: 6px; }
-.track-default { height: 10px; }
+.track-sm { height: 6px; }
+.track-md { height: 10px; }
 
 .bar {
     position: relative;
     height: 100%;
-    border-radius: 999px;
+    border-radius: var(--radius-full);
     transition: width var(--zelda-motion-duration-slow) var(--zelda-motion-ease);
 }
 

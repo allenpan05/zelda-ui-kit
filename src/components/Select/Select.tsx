@@ -15,13 +15,13 @@ export interface SelectProps {
     options?: SelectOption[];
     placeholder?: string;
     disabled?: boolean;
-    size?: 'small' | 'middle' | 'large';
+    size?: 'sm' | 'md' | 'lg';
     onChange?: (value: string | number) => void;
     className?: string;
 }
 
 export const Select = forwardRef<HTMLDivElement, SelectProps>(
-    ({ value: controlledValue, defaultValue, options = [], placeholder = 'Select...', disabled = false, size = 'middle', onChange, className }, ref) => {
+    ({ value: controlledValue, defaultValue, options = [], placeholder = 'Select...', disabled = false, size = 'md', onChange, className }, ref) => {
         const [open, setOpen] = useState(false);
         const [internalValue, setInternalValue] = useState(defaultValue);
         const wrapperRef = useRef<HTMLDivElement>(null);

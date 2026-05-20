@@ -71,10 +71,10 @@ All components are named exports from `zelda-ui-kit`. Import the CSS once at the
 ### Input
 
 ```tsx
-<Input size="middle" prefix={<SearchIcon />} suffix=".com" error helperText="Required" />
+<Input size="md" prefix={<SearchIcon />} suffix=".com" error helperText="Required" />
 ```
 
-- `size`: `'small' | 'middle' | 'large'`
+- `size`: `'sm' | 'md' | 'lg'`
 - `prefix`: `ReactNode`
 - `suffix`: `ReactNode`
 - `error`: `boolean`
@@ -98,7 +98,7 @@ All components are named exports from `zelda-ui-kit`. Import the CSS once at the
 - `value` / `defaultValue`: `string | number`
 - `placeholder`: `string`
 - `disabled`: `boolean`
-- `size`: `'small' | 'middle' | 'large'`
+- `size`: `'sm' | 'md' | 'lg'`
 - `onChange`: `(value: string | number) => void`
 
 ---
@@ -118,12 +118,12 @@ All components are named exports from `zelda-ui-kit`. Import the CSS once at the
 ### Switch
 
 ```tsx
-<Switch checked={val} onChange={setVal} size="middle" />
+<Switch checked={val} onChange={setVal} size="md" />
 ```
 
 - `checked` / `defaultChecked`: `boolean`
 - `disabled`: `boolean`
-- `size`: `'small' | 'middle'`
+- `size`: `'sm' | 'md'`
 - `onChange`: `(checked: boolean) => void`
 
 ---
@@ -215,7 +215,7 @@ All components are named exports from `zelda-ui-kit`. Import the CSS once at the
 - `percent`: `number` (0–100)
 - `status`: `'normal' | 'success' | 'error'`
 - `showInfo`: `boolean` — show percentage text
-- `size`: `'small' | 'default'`
+- `size`: `'sm' | 'md'`
 - `color`: `'gold' | 'sheikah'`
 
 ---
@@ -262,7 +262,7 @@ All components are named exports from `zelda-ui-kit`. Import the CSS once at the
 
 - `spinning`: `boolean`
 - `tip`: `ReactNode`
-- `size`: `'small' | 'default' | 'large'`
+- `size`: `'sm' | 'md' | 'lg'`
 - Wraps `children` with an overlay spinner
 
 ---

@@ -1,17 +1,18 @@
 import React, { forwardRef } from 'react';
+import classNames from 'classnames';
 import styles from './switch.module.less';
 
 export interface SwitchProps {
     checked?: boolean;
     defaultChecked?: boolean;
     disabled?: boolean;
-    size?: 'small' | 'middle';
+    size?: 'sm' | 'md';
     onChange?: (checked: boolean) => void;
     className?: string;
 }
 
 export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
-    ({ checked: controlledChecked, defaultChecked = false, disabled = false, size = 'middle', onChange, className }, ref) => {
+    ({ checked: controlledChecked, defaultChecked = false, disabled = false, size = 'md', onChange, className }, ref) => {
         const [internalChecked, setInternalChecked] = React.useState(defaultChecked);
         const checked = controlledChecked !== undefined ? controlledChecked : internalChecked;
 
@@ -22,23 +23,16 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
             onChange?.(next);
         };
 
-        const classNames = [
-            styles.switch,
-            styles[`switch-${size}`],
-            checked && styles['switch-checked'],
-            disabled && styles['switch-disabled'],
-            className,
-        ]
-            .filter(Boolean)
-            .join(' ');
-
         return (
             <button
                 ref={ref}
                 type="button"
                 role="switch"
                 aria-checked={checked}
-                className={classNames}
+                className={classNames(styles.switch, styles[`switch-${size}`], {
+                    [styles['switch-checked']]: checked,
+                    [styles['switch-disabled']]: disabled,
+                }, className)}
                 onClick={handleClick}
                 disabled={disabled}
             >

@@ -9,7 +9,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(26, 22, 16, 0.7);
+    background: var(--zelda-bg-color-overlay);
     border-radius: inherit;
 }
 
@@ -26,9 +26,9 @@
     color: var(--zelda-sheikah-color);
 }
 
-.spinner-small .ring { width: 24px; height: 24px; }
-.spinner-default .ring { width: 36px; height: 36px; }
-.spinner-large .ring { width: 48px; height: 48px; }
+.spinner-sm .ring { width: 24px; height: 24px; }
+.spinner-md .ring { width: 36px; height: 36px; }
+.spinner-lg .ring { width: 48px; height: 48px; }
 
 .ring {
     animation: zelda-loading-spin 1s linear infinite;

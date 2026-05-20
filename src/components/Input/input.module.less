@@ -16,17 +16,17 @@
 }
 
 // ---------- Size ----------
-.wrapper-small {
+.wrapper-sm {
     height: var(--zelda-height-sm);
     padding: 0 var(--zelda-spacing-md);
 }
 
-.wrapper-middle {
+.wrapper-md {
     height: var(--zelda-height-base);
     padding: 0 var(--zelda-spacing-lg);
 }
 
-.wrapper-large {
+.wrapper-lg {
     height: var(--zelda-height-lg);
     padding: 0 var(--zelda-spacing-xl);
 }
@@ -37,7 +37,7 @@
 
     &:focus-within {
         border-color: var(--zelda-error-color);
-        box-shadow: 0 0 12px rgba(229, 57, 53, 0.3);
+        box-shadow: 0 0 12px var(--zelda-error-color);
     }
 
     .helper {

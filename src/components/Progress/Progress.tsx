@@ -5,13 +5,13 @@ export interface ProgressProps {
     percent: number;
     status?: 'normal' | 'success' | 'error';
     showInfo?: boolean;
-    size?: 'small' | 'default';
+    size?: 'sm' | 'md';
     color?: 'gold' | 'sheikah';
     className?: string;
 }
 
 export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
-    ({ percent, status = 'normal', showInfo = true, size = 'default', color = 'sheikah', className }, ref) => {
+    ({ percent, status = 'normal', showInfo = true, size = 'md', color = 'sheikah', className }, ref) => {
         const clampedPercent = Math.min(100, Math.max(0, percent));
 
         return (
@@ -28,7 +28,7 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
                             .join(' ')}
                         style={{ width: `${clampedPercent}%` }}
                     >
-                        {size === 'default' && <span className={styles.glow} />}
+                        {size === 'md' && <span className={styles.glow} />}
                     </div>
                 </div>
                 {showInfo && (

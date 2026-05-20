@@ -31,7 +31,7 @@ const App: React.FC = () => {
   const [health, setHealth] = useState(7);
   const [stamina, setStamina] = useState(80);
   const [rupees, setRupees] = useState(1234);
-  const [theme, setTheme] = useState<'dark' | 'light'>('light');
+  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
   const [toastVisible, setToastVisible] = useState(false);
   const [questToastVisible, setQuestToastVisible] = useState(false);
   const [compassHeading, setCompassHeading] = useState(0);

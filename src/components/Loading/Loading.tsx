@@ -4,13 +4,13 @@ import styles from './loading.module.less';
 export interface LoadingProps {
     spinning?: boolean;
     tip?: React.ReactNode;
-    size?: 'small' | 'default' | 'large';
+    size?: 'sm' | 'md' | 'lg';
     className?: string;
     children?: React.ReactNode;
 }
 
 export const Loading = forwardRef<HTMLDivElement, LoadingProps>(
-    ({ spinning = true, tip, size = 'default', className, children }, ref) => {
+    ({ spinning = true, tip, size = 'md', className, children }, ref) => {
         const spinner = (
             <div className={[styles.spinner, styles[`spinner-${size}`], className].filter(Boolean).join(' ')}>
                 <svg className={styles.ring} viewBox="0 0 50 50">

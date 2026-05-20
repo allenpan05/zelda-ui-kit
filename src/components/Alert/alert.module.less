@@ -64,9 +64,11 @@
     opacity: 0.6;
     cursor: pointer;
     flex-shrink: 0;
-    transition: opacity var(--zelda-motion-duration-fast) var(--zelda-motion-ease);
+    border-radius: var(--zelda-border-radius-sm);
+    transition: all var(--zelda-motion-duration-fast) var(--zelda-motion-ease);
 
     &:hover {
         opacity: 1;
+        background: rgba(255, 255, 255, 0.1);
     }
 }

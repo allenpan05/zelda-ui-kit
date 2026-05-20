@@ -46,9 +46,15 @@
 @zelda-sheikah-border: #00C8B8;
 @zelda-sheikah-glow: rgba(0, 200, 184, 0.3);
 
+// Sheikah 元件色 (alias for module components)
+@zelda-sheikah-color: #00C8B8;
+@zelda-sheikah-color-active: #00A89C;
+@zelda-sheikah-color-bg: rgba(0, 200, 184, 0.08);
+
 // ============================================
 // 間距系統
 // ============================================
+@space-2xs: 2px;
 @space-xs: 4px;
 @space-sm: 8px;
 @space-md: 16px;
@@ -66,8 +72,14 @@
 @radius-full: 9999px;
 
 // ============================================
+// 邊框寬度
+// ============================================
+@border-width: 1px;
+
+// ============================================
 // 字體大小
 // ============================================
+@font-size-2xs: 10px;
 @font-size-xs: 12px;
 @font-size-sm: 14px;
 @font-size-md: 16px;
@@ -78,11 +90,41 @@
 @font-size-4xl: 36px;
 
 // ============================================
+// 字體族
+// ============================================
+@font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+@font-family-heading: 'Hylia Serif', 'Georgia', 'Times New Roman', serif;
+
+// ============================================
 // 行高
 // ============================================
 @line-height-tight: 1.25;
 @line-height-normal: 1.5;
 @line-height-relaxed: 1.75;
+
+// ============================================
+// 背景色 (供 CSS Modules)
+// ============================================
+@bg-color: @zelda-bg;
+@bg-color-secondary: @zelda-white;
+@bg-color-tertiary: #F5F5F0;
+@bg-color-disabled: #ECECE8;
+@bg-color-overlay: rgba(0, 0, 0, 0.5);
+
+// ============================================
+// 元件高度
+// ============================================
+@height-sm: 28px;
+@height-base: 36px;
+@height-lg: 44px;
+
+// ============================================
+// 動畫
+// ============================================
+@motion-duration-fast: 0.15s;
+@motion-duration-base: 0.2s;
+@motion-duration-slow: 0.3s;
+@motion-ease: cubic-bezier(0.4, 0, 0.2, 1);
 
 // ============================================
 // 陰影
@@ -95,6 +137,7 @@
 // Sheikah 發光效果
 @glow-primary: 0 0 10px @zelda-primary, 0 0 20px @zelda-primary-light;
 @glow-sheikah: 0 0 15px @zelda-sheikah-glow, 0 0 30px rgba(0, 200, 184, 0.1);
+@glow-sm: 0 0 6px @zelda-sheikah-glow;
 
 // ============================================
 // 過渡效果
